@@ -1,17 +1,10 @@
 const express = require("express");
 const router = express.Router();
-
-// router.get("/", (req, res) => {
-//   res.send("welcome to home page with using router :)");
-// });
+const authcontrollers = require("../controllers/auth-controller");
 
 // prefered way because you can able to attach multiple requests on one route with less code
-router.route("/").get((req, res) => {
-  res.send("Welcome to home page :)");
-});
+router.route("/").get(authcontrollers.home);
 
-router.route("/register").get((req,res) => {
-    res.send("Welcome to registeration page :)");
-})
+router.route("/register").get(authcontrollers.register);
 
 module.exports = router;
