@@ -11,10 +11,11 @@ const home = async (req, res) => {
 //Registeration page logic
 const register = async (req, res) => {
   try {
-    res.send("Welcome to registeration page using controllers again:)");
+    console.log(req.body);
+    res.json({ message: req.body });
   } catch (error) {
     console.log(error);
   }
 };
 
-module.exports = { home ,register};
+module.exports = { home, register };
