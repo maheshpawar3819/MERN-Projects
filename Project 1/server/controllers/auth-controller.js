@@ -28,7 +28,11 @@ const register = async (req, res) => {
       password,
     });
 
-    res.json({ userCreated });
+    res.json({
+      msg: "registration successfull",
+      token: await userCreated.generateToken(),
+      userId: userCreated._id.toString(),
+    });
   } catch (error) {
     console.log(error, "Internal Server Error ");
   }
