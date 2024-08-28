@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcryptjs");
 
 const userSchema = new mongoose.Schema({
   username: {
@@ -23,8 +24,27 @@ const userSchema = new mongoose.Schema({
   },
 });
 
-const User=new mongoose.model("User",userSchema);
+//secure the passwrod with using bcrypt (middleware);
 
-User.insertMany({username:"mahesh",email:"meheshp@gmail.com",phone:"7828624595",password:"mahi79152"})
+userSchema.pre("save", async function (next) {
+  const user = this;
 
-module.exports=User;
+  if (!user.isModified("password")) {
+    next();
+  }
+
+  try {
+    //hash the passwrod
+    const saltRound = await bcrypt.genSalt(10);
+    const hash_password = await bcrypt.hash(user.password, saltRound);
+    user.password = hash_password;
+  } catch (error) {
+    next(error);
+  }
+});
+
+const User = new mongoose.model("User", userSchema);
+
+// User.insertMany({username:"mahesh",email:"meheshp@gmail.com",phone:"7828624595",password:"mahi79152"})
+
+module.exports = User;

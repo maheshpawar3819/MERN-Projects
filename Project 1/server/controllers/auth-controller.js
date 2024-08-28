@@ -21,7 +21,12 @@ const register = async (req, res) => {
       return res.status(400).json({ msg: "email already exist" });
     }
 
-    const userCreated = await User.create({ username, email, phone, password });
+    const userCreated = await User.create({
+      username,
+      email,
+      phone,
+      password,
+    });
 
     res.json({ userCreated });
   } catch (error) {
