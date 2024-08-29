@@ -11,7 +11,7 @@ const home = async (req, res) => {
 };
 
 //Registeration page logic
-const register = async (req, res) => {
+const register = async (req, res, next) => {
   try {
     // console.log(req.body);
     const { username, email, phone, password } = req.body;
@@ -35,7 +35,8 @@ const register = async (req, res) => {
       userId: userCreated._id.toString(),
     });
   } catch (error) {
-    console.log(error, "Internal Server Error ");
+    // console.log(error, "Internal Server Error ");
+    next(error);
   }
 };
 
@@ -47,14 +48,13 @@ const login = async (req, res) => {
 
     //check email valid or not
     const userExist = await User.findOne({ email });
-    
 
     if (!userExist) {
       return res.status(404).json({ message: "invalid credentials" });
     }
 
     // const user = await bcrypt.compare(password, userExist.password);
-    const user=await userExist.comparePassword(password); 
+    const user = await userExist.comparePassword(password);
 
     if (user) {
       res.json({

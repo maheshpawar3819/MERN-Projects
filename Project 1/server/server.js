@@ -3,13 +3,14 @@ const express = require("express");
 const app = express();
 const router = require("./router/auth-router");
 const connectDb = require("./utils/db");
+const errorMiddleware = require("./middlewares/error-middleware");
 const port = 8080;
 
 //middleware
 //for using json in the application
 app.use(express.json());
-
 app.use("/api/auth", router);
+app.use(errorMiddleware);
 
 //logic start server only when the db connect succssfully
 connectDb()
