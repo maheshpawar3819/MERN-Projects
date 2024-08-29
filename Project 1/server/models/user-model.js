@@ -5,19 +5,19 @@ const jwt = require("jsonwebtoken");
 const userSchema = new mongoose.Schema({
   username: {
     type: String,
-    require: true,
+    required: true,
   },
   email: {
     type: String,
-    require: true,
+    required: true,
   },
   phone: {
     type: String,
-    require: true,
+    required: true,
   },
   password: {
     type: String,
-    require: true,
+    required: true,
   },
   isAdmin: {
     type: Boolean,
@@ -46,8 +46,8 @@ userSchema.pre("save", async function (next) {
 
 // compare the password
 userSchema.methods.comparePassword = async function (password) {
-    return bcrypt.compare(password,this.password)
-}
+  return bcrypt.compare(password, this.password);
+};
 
 //json web Token
 userSchema.methods.generateToken = async function () {
