@@ -19,7 +19,7 @@ const Registration = () => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault;
+    e.preventDefault();
   };
 
   return (
