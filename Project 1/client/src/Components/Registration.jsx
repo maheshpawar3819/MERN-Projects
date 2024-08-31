@@ -31,7 +31,7 @@ const Registration = () => {
       });
       console.log(response);
       if (response.ok) {
-        alert("Registeration Successfull 😊");
+        alert("Registration Successfull 😊");
         setUser({ username: "", email: "", phone: "", password: "" });
       }
     } catch (error) {
