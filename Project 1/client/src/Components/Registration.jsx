@@ -18,8 +18,25 @@ const Registration = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    try {
+      const response = await fetch("http://localhost:8080/api/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+      });
+      console.log(response);
+      if (response.ok) {
+        alert("Registeration Successfull 😊");
+        setUser({ username: "", email: "", phone: "", password: "" });
+      }
+    } catch (error) {
+      console.log("register", error);
+    }
   };
 
   return (
