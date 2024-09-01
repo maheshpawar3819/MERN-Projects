@@ -14,6 +14,7 @@ const CreateUser = () => {
       .post("http://localhost:8080/createUser", { name, email, age })
       .then((result) => {
         console.log(result);
+        alert("your record saved successfully :)");
         navigate("/");
       })
       .catch((err) => console.log(err));
