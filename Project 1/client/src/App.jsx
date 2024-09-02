@@ -9,6 +9,7 @@ import Service from "./Components/Service";
 import Navbar from "./Components/Navbar/Navbar";
 import Error from "./Components/Error/Error";
 import Footer from "./Components/Footer/Footer";
+import Logout from "./Components/Logout";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/service" element={<Service />} />
           <Route path="/register" element={<Registration />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/logout" element={<Logout />} />
           <Route path="*" element={<Error />} />
         </Routes>
         <Footer />
