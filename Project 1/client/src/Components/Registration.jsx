@@ -38,7 +38,7 @@ const Registration = () => {
         let res_data = await response.json();
         // console.log(res_data);
         //stored token in localhost:
-        storedtokenInls = res_data.token;
+        storedtokenInls(res_data.token);
         alert("Registration Successfull 😊");
         setUser({ username: "", email: "", phone: "", password: "" });
         navigate("/");

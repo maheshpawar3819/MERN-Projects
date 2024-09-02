@@ -36,7 +36,6 @@ const Login = () => {
         // for store jwt token
         let res_data = await response.json();
         storedtokenInls(res_data.token);
-        storedtokenInls(res_data.token);
         alert("Login Successfull🔓");
         setUser({ email: "", password: "" });
 
