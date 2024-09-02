@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../store/auth";
 
 const Login = () => {
   const [user, setUser] = useState({
@@ -8,6 +9,7 @@ const Login = () => {
   });
 
   const navigate = useNavigate();
+  const {storedtokenInls}=useAuth();
 
   const handleInput = (e) => {
     let name = e.target.name;
@@ -31,8 +33,13 @@ const Login = () => {
       });
       console.log("login form", response);
       if (response.ok) {
+        // for store jwt token
+        let res_data = await response.json();
+        storedtokenInls(res_data.token);
+        storedtokenInls(res_data.token);
         alert("Login Successfull🔓");
         setUser({ email: "", password: "" });
+
         navigate("/");
       } else {
         alert("Invalid Credential🔒");

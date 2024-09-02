@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useAuth } from "../store/auth";
+import { useNavigate } from "react-router-dom";
 
 const Registration = () => {
   const [user, setUser] = useState({
@@ -7,6 +9,8 @@ const Registration = () => {
     phone: "",
     password: "",
   });
+  const navigate = useNavigate();
+  const { storedtokenInls } = useAuth();
 
   const handleInput = (e) => {
     let name = e.target.name;
@@ -29,10 +33,15 @@ const Registration = () => {
         },
         body: JSON.stringify(user),
       });
-      console.log(response);
+      // console.log(response);
       if (response.ok) {
+        let res_data = await response.json();
+        // console.log(res_data);
+        //stored token in localhost:
+        storedtokenInls = res_data.token;
         alert("Registration Successfull 😊");
         setUser({ username: "", email: "", phone: "", password: "" });
+        navigate("/");
       }
     } catch (error) {
       console.log("register", error);
