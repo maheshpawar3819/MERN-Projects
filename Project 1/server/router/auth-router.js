@@ -14,4 +14,6 @@ router
 
 router.route("/login").post(validate(loginSchema), authcontrollers.login);
 
+router.route("/user").get(authcontrollers.user);
+
 module.exports = router;
