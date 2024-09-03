@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const authcontrollers = require("../controllers/auth-controller");
+const authMiddleware = require("../middlewares/auth-middleware");
 //middlewares (zod validation);
 const { signupSchema, loginSchema } = require("../validators/auth-avlidator");
 const validate = require("../middlewares/validate-middleware");
@@ -14,6 +15,6 @@ router
 
 router.route("/login").post(validate(loginSchema), authcontrollers.login);
 
-router.route("/user").get(authcontrollers.user);
+router.route("/user").get(authMiddleware, authcontrollers.user);
 
 module.exports = router;

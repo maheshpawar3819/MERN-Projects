@@ -74,9 +74,9 @@ const login = async (req, res) => {
 
 const user = async (req, res) => {
   try {
-    // const userData = req.user;
+    const userData = req.user;
     // console.log(userData);
-    res.status(200).json({ msg: "hii user" });
+    res.status(200).send(userData);
   } catch (error) {
     console.log(`error from user route ${error}`);
   }
