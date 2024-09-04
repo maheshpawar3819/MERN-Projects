@@ -5,7 +5,7 @@ import About from "./Components/About";
 import Contact from "./Components/Contact/Contact";
 import Registration from "./Components/Registration";
 import Login from "./Components/Login";
-import Service from "./Components/Service";
+import Service from "./Components/Service/Service";
 import Navbar from "./Components/Navbar/Navbar";
 import Error from "./Components/Error/Error";
 import Footer from "./Components/Footer/Footer";
