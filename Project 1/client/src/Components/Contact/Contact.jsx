@@ -13,7 +13,6 @@ const Contact = () => {
   const [userData, setUserData] = useState(true);
   const { user } = useAuth();
 
-  // logic for display login user data in the contact fields
   useEffect(() => {
     if (userData && user) {
       setContact({
