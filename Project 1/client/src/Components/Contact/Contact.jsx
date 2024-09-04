@@ -1,25 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useAuth } from "../../store/auth";
 
+export const defaultContactFormData = {
+  username: "",
+  email: "",
+  message: "",
+};
+
 const Contact = () => {
-  const [contact, setContact] = useState({
-    username: "",
-    email: "",
-    message: "",
-  });
+  const [contact, setContact] = useState(defaultContactFormData);
 
   const [userData, setUserData] = useState(true);
   const { user } = useAuth();
 
   // logic for display login user data in the contact fields
-  if (userData && user) {
-    setContact({
-      username: user.username,
-      email: user.email,
-      message: "",
-    });
-    setUserData(false);
-  }
+  useEffect(() => {
+    if (userData && user) {
+      setContact({
+        username: user.username,
+        email: user.email,
+        message: "",
+      });
+      setUserData(false);
+    }
+  }, [user]);
 
   const handleInput = (e) => {
     let name = e.target.name;
@@ -30,9 +34,26 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(contact);
+
+    try {
+      const response = await fetch("http://localhost:8080/api/form/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(contact),
+      });
+      if (response.ok) {
+        setContact(defaultContactFormData);
+        const data = await response.json();
+        console.log(data);
+        alert("message send successfully");
+      }
+    } catch (error) {
+      console.error("something wrong on your side");
+    }
   };
   return (
     <div>
