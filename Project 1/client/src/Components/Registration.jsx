@@ -42,7 +42,7 @@ const Registration = () => {
         storedtokenInls(res_data.token);
         toast.success("Registration Successfull 😊");
         setUser({ username: "", email: "", phone: "", password: "" });
-        navigate("/login");
+        navigate("/");
       } else {
         toast.error("not a valid registeration");
       }

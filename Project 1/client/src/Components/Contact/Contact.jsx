@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../../store/auth";
+import { toast } from "react-toastify";
 
 export const defaultContactFormData = {
   username: "",
@@ -13,16 +14,14 @@ const Contact = () => {
   const [userData, setUserData] = useState(true);
   const { user } = useAuth();
 
-  useEffect(() => {
-    if (userData && user) {
-      setContact({
-        username: user.username,
-        email: user.email,
-        message: "",
-      });
-      setUserData(false);
-    }
-  }, [user]);
+  if (userData && user) {
+    setContact({
+      username: user.username,
+      email: user.email,
+      message: "",
+    });
+    setUserData(false);
+  }
 
   const handleInput = (e) => {
     let name = e.target.name;
@@ -48,7 +47,7 @@ const Contact = () => {
         setContact(defaultContactFormData);
         const data = await response.json();
         console.log(data);
-        alert("message send successfully");
+        toast.success("message send successfully");
       }
     } catch (error) {
       console.error("something wrong on your side");

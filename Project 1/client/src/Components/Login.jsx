@@ -10,7 +10,7 @@ const Login = () => {
   });
 
   const navigate = useNavigate();
-  const {storedtokenInls}=useAuth();
+  const { storedtokenInls } = useAuth();
 
   const handleInput = (e) => {
     let name = e.target.name;
