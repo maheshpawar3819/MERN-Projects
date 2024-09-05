@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useAuth } from "../store/auth";
 import { useNavigate } from "react-router-dom";
+import {toast}from 'react-toastify'
 
 const Registration = () => {
   const [user, setUser] = useState({
@@ -39,11 +40,11 @@ const Registration = () => {
         // console.log(res_data);
         //stored token in localhost:
         storedtokenInls(res_data.token);
-        alert("Registration Successfull 😊");
+        toast.success("Registration Successfull 😊");
         setUser({ username: "", email: "", phone: "", password: "" });
         navigate("/login");
       } else {
-        alert("not a valid registeration");
+        toast.error("not a valid registeration");
       }
     } catch (error) {
       console.log("register", error);

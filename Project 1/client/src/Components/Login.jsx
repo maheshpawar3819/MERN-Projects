@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../store/auth";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const [user, setUser] = useState({
@@ -36,12 +37,12 @@ const Login = () => {
         // for store jwt token
         let res_data = await response.json();
         storedtokenInls(res_data.token);
-        alert("Login Successfull🔓");
+        toast.success("Login Successfull🔓");
         setUser({ email: "", password: "" });
 
         navigate("/");
       } else {
-        alert("Invalid Credential🔒");
+        toast.error("Invalid Credential🔒");
       }
     } catch (error) {
       console.log("login :", error);
