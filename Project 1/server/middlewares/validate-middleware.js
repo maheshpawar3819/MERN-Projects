@@ -9,7 +9,7 @@ const validate = (schema) => async (req, res, next) => {
     const extraDetails = err.errors[0].message;
 
     const error={
-      status,
+      status, 
       message,
       extraDetails
     }

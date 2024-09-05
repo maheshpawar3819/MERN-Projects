@@ -41,7 +41,9 @@ const Registration = () => {
         storedtokenInls(res_data.token);
         alert("Registration Successfull 😊");
         setUser({ username: "", email: "", phone: "", password: "" });
-        navigate("/");
+        navigate("/login");
+      } else {
+        alert("not a valid registeration");
       }
     } catch (error) {
       console.log("register", error);
