@@ -470,3 +470,109 @@ a.active {
     }
   }
 }
+
+
+/* admin pannel css  */
+
+.containerad {
+  width: 80%;
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 20px;
+}
+
+.admin-users-section {
+  margin-top: 50px;
+}
+
+.admin-users-section h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.admin-users {
+  margin-top: 30px;
+  background-color: #fff;
+  padding: 0px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+table thead {
+  background-color: #007bff;
+  color: white;
+  font-size: larger;
+}
+
+table thead th {
+  padding: 12px;
+  font-weight: bold;
+}
+
+table tbody tr {
+  border-bottom: 1px solid #3C3633;
+  color: #242424;
+  font-size: larger;
+}
+
+table tbody tr {
+  background-color: #EEEDEB;
+}
+
+table tbody tr:hover {
+  background-color: #3c363394;
+}
+
+table tbody td {
+  padding: 12px;
+  text-align: center;
+}
+
+table tbody td:nth-child(1) {
+  text-align: left;
+}
+
+table tbody td:nth-child(2),
+table tbody td:nth-child(3) {
+  word-wrap: break-word;
+}
+
+table tbody td a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+table tbody td a:hover {
+  text-decoration: underline;
+}
+
+/* Buttons for Edit/Delete */
+table tbody td button {
+  padding: 8px 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+table tbody td button:hover {
+  background-color: #0056b3;
+}
+
+table tbody td button.delete {
+  background-color: #dc3545;
+}
+
+table tbody td button.delete:hover {
+  background-color: #c82333;
+}
