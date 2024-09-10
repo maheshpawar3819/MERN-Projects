@@ -27,6 +27,8 @@ app.use("/api/data", serviceRoute);
 
 //defining admin route
 app.use("/api/admin", adminRoute);
+app.use("/api/admin",adminRoute);
+
 app.use(errorMiddleware);
 
 //logic start server only when the db connect succssfully
