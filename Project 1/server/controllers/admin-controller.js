@@ -19,6 +19,18 @@ const getAllUsers = async (req, res, next) => {
   }
 };
 
+//logic for update user
+
+const getUserById = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    const data = await User.findOne({ _id: id }, { password: 0 });
+    return res.status(200).json(data);
+  } catch (error) {
+    next(error);
+  }
+};
+
 //logic to delete user
 const deleteUserById = async (req, res, next) => {
   try {
@@ -48,4 +60,4 @@ const getAllContacts = async (req, res, next) => {
   }
 };
 
-module.exports = { getAllUsers, getAllContacts, deleteUserById };
+module.exports = { getAllUsers, getAllContacts, deleteUserById, getUserById };
