@@ -19,6 +19,17 @@ const getAllUsers = async (req, res, next) => {
   }
 };
 
+//logic to delete user
+const deleteUserById = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    await User.deleteOne({ _id: id });
+    return res.status(200).json({ message: "user deleted successfully" });
+  } catch (error) {
+    next(error);
+  }
+};
+
 //All contacts logic for admin pannel
 
 const getAllContacts = async (req, res, next) => {
@@ -37,4 +48,4 @@ const getAllContacts = async (req, res, next) => {
   }
 };
 
-module.exports = { getAllUsers, getAllContacts };
+module.exports = { getAllUsers, getAllContacts, deleteUserById };

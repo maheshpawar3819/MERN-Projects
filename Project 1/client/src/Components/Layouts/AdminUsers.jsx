@@ -28,6 +28,27 @@ const AdminUsers = () => {
     getAllUsersData();
   }, []);
 
+  const deleteUser = async (id) => {
+    try {
+      const response = await fetch(
+        `http://localhost:8080/api/admin/users/delete/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            //to validate jwt token
+            Authorization: authorizationToken,
+          },
+        }
+      );
+      const data = await response.json();
+      if (response.ok) {
+        getAllUsersData();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div>
       {/* Admin users section */}
@@ -57,7 +78,12 @@ const AdminUsers = () => {
                       <button>Edit</button>
                     </td>
                     <td>
-                      <button className="delete">Delete</button>
+                      <button
+                        className="delete"
+                        onClick={() => deleteUser(data._id)}
+                      >
+                        Delete
+                      </button>
                     </td>
                   </tr>
                 );
