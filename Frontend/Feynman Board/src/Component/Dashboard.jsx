@@ -1,18 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-// import TopicCard from "./TopicCard";
-import axios from "axios";
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+// import TopicCard from './TopicCard';
+import axios from 'axios';
 
 const Dashboard = () => {
   const [topics, setTopics] = useState([]);
-  const username = localStorage.getItem("username");
+  const username = localStorage.getItem('username');
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios
-      .get(`/api/topics?username=${username}`)
-      .then((response) => setTopics(response.data))
-      .catch((err) => console.error(err));
+    axios.get(`/api/topics?username=${username}`)
+      .then(response => setTopics(response.data))
+      .catch(err => console.error(err));
   }, [username]);
 
   return (
@@ -21,7 +20,7 @@ const Dashboard = () => {
         <h1 className="text-2xl font-bold">Welcome, {username}</h1>
         <button
           className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600"
-          onClick={() => navigate("/add-topic")}
+          onClick={() => navigate('/add-topic')}
         >
           Add Topic
         </button>

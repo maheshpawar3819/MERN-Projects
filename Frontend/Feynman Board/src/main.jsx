@@ -16,8 +16,8 @@ const AppRouter = createBrowserRouter([
       },
       {
         path: "/dashboard",
-        element:<Dashboard/>
-      }
+        element:<Dashboard/>,
+      },
     ],
   },
 ]);
