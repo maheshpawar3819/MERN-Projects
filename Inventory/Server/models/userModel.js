@@ -18,7 +18,7 @@ const userSchema = mongoose.Schema(
     },
     role: {
       type: String,
-      enum: ["Admin", "Manager", "Employee"],
+      enum: ["Admin", "Manager", "Employee"],//only those peoples are able to change in databse
       default: "Employee",
     },
   },
