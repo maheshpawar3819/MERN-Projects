@@ -11,3 +11,5 @@ const {
 //define routes
 router.route("/").get(protect, getProducts).post(protect, createProduct);
 router.route("/:id").put(protect, updateProduct).delete(protect, deleteProduct);
+
+module.exports=router;
