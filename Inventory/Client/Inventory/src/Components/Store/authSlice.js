@@ -29,7 +29,12 @@ export const login = (email, password) => async (dispatch) => {
 };
 
 export const register = (name, email, password, role) => async () => {
-  await axios.post("", { name, email, password, role });
+  await axios.post("http://localhost:8080/api/auth/register", {
+    name,
+    email,
+    password,
+    role,
+  });
 };
 
 export const logout = () => (dispatch) => {
