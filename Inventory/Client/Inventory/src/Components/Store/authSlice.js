@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 
 const authSlice = createSlice({
   name: "auth",
@@ -19,5 +20,21 @@ const authSlice = createSlice({
 });
 
 export const { setUser, logoutUser } = authSlice.actions;
+
+export const login = (email, password) => async (dispatch) => {
+  const responce = await axios.post("", { email, password });
+  const { user, token } = await responce.data;
+  localStorage.setItem("token", token);
+  dispatch(setUser({ user, token }));
+};
+
+export const register = (name, email, password, role) => async () => {
+  await axios.post("", { name, email, password, role });
+};
+
+export const logout = () => (dispatch) => {
+  localStorage.removeItem("token");
+  dispatch(logoutUser());
+};
 
 export default authSlice.reducer;
