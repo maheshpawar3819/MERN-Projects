@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 const ProductForm = ({ selectedProduct, onProductSubmit, clearSelection }) => {
   const [formData, setFormData] = useState({
     name: "",
-    sku: "",
     price: "",
     quantity: "",
     category: "",
@@ -13,7 +12,6 @@ const ProductForm = ({ selectedProduct, onProductSubmit, clearSelection }) => {
     if (selectedProduct) {
       setFormData({
         name: selectedProduct.name,
-        sku: selectedProduct.sku,
         price: selectedProduct.price,
         quantity: selectedProduct.quantity,
         category: selectedProduct.category,
@@ -21,7 +19,6 @@ const ProductForm = ({ selectedProduct, onProductSubmit, clearSelection }) => {
     } else {
       setFormData({
         name: "",
-        sku: "",
         price: "",
         quantity: "",
         category: "",
@@ -36,30 +33,38 @@ const ProductForm = ({ selectedProduct, onProductSubmit, clearSelection }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (selectedProduct) {
-      // Update existing product
-      await fetch(
-        `http://localhost:8080/api/products/"${selectedProduct._id}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        }
-      );
-    } else {
-      // Create new product
-      await fetch("http://localhost:8080/api/products", {
+
+    console.log("Form Data:", formData); // Log the data being sent
+
+    // Validate all required fields are present
+    const { name, price, quantity, category } = formData;
+    if (!name  || !price || !quantity || !category) {
+      alert("All fields are required");
+      return;
+    }
+
+    try {
+      const response = await fetch("http://localhost:8080/api/products", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
+
+      // Check if the response is okay (status in the range 200-299)
+      if (!response.ok) {
+        const errorData = await response.json(); // Try to get error details
+        console.error("Error response:", errorData);
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      // Assuming a successful response
+      onProductSubmit(); // Refresh product list
+      clearSelection(); // Clear form
+    } catch (error) {
+      console.error("Error creating product:", error);
     }
-    onProductSubmit(); // Refresh the product list after submit
-    clearSelection(); // Clear the selected product after submit
   };
 
   return (
@@ -76,15 +81,7 @@ const ProductForm = ({ selectedProduct, onProductSubmit, clearSelection }) => {
         required
         className="border rounded w-full p-2 mb-2"
       />
-      <input
-        type="text"
-        name="sku"
-        placeholder="SKU"
-        value={formData.sku}
-        onChange={handleChange}
-        required
-        className="border rounded w-full p-2 mb-2"
-      />
+      
       <input
         type="number"
         name="price"

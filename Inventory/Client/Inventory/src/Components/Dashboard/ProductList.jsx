@@ -6,7 +6,7 @@ const ProductList = ({ onEdit }) => {
 
   const fetchProducts = async () => {
     try {
-      const response = await fetch("/api/products"); // Adjust the API endpoint as needed
+      const response = await fetch("http://localhost:8080/api/products"); // Adjust the API endpoint as needed
       const data = await response.json();
       setProducts(data);
     } catch (error) {
@@ -20,7 +20,7 @@ const ProductList = ({ onEdit }) => {
 
   const handleDelete = async (id) => {
     try {
-      await fetch(`/api/products/${id}`, {
+      await fetch(`http://localhost:8080/api/products${id}`, {
         method: "DELETE",
       });
       fetchProducts(); // Refresh product list after deletion
@@ -33,7 +33,7 @@ const ProductList = ({ onEdit }) => {
     <div className="mt-4">
       <h2 className="text-2xl font-bold">Product List</h2>
       <ul>
-        {products.map((product) => (
+        {products && products.map((product) => (
           <ProductItem
             key={product._id}
             product={product}
