@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Header from "./Components/Header";
+import HomeContent from "./Components/HomeContent";
 import Home from "./Components/Home";
 import Login from "./Components/Forms/Login";
 import Register from "./Components/Forms/Register";
@@ -14,6 +14,10 @@ function App() {
       path: "/",
       element: <Home />,
       children: [
+        {
+          path:"/",
+          element:<HomeContent />,
+        },
         {
           path: "/login",
           element: <Login />,
