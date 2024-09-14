@@ -4,6 +4,7 @@ import App from "./App.jsx";
 import "./index.css";
 import LandingPage from "./Component/LandinPage.jsx";
 import Dashboard from "./Component/Dashboard.jsx";
+import AddTopic from "./Component/AddTopic.jsx";
 
 const AppRouter = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const AppRouter = createBrowserRouter([
       {
         path: "/dashboard",
         element:<Dashboard/>,
+      },
+      {
+       path:"/addtopic",
+       element:<AddTopic/>
       },
     ],
   },

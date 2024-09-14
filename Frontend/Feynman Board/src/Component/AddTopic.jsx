@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+import "../index.css";
+
 import categorizeContent from "../utils/categorizeContent";
 
 const AddTopic = () => {
@@ -15,10 +17,20 @@ const AddTopic = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const username = localStorage.getItem("username");
-    console.log({ username, title, blocks }); // Log before submission
-    const topicData = { username, title, blocks };
+  
+    // Ensure every block has a category
+    const updatedBlocks = blocks.map((block) => {
+      if (!block.category) {
+        return { ...block, category: "understood" }; // Assign default category
+      }
+      return block;
+    });
+  
+    const topicData = { username, title, blocks: updatedBlocks };
+    console.log({ username, title, blocks: updatedBlocks }); // Log before submission
+  
     axios
-      .post("http://localhost:5000/api/topics", topicData)
+      .post("http://localhost:5000/topics", topicData)
       .then((response) => {
         console.log("Topic saved:", response.data);
         alert("Topic added successfully");
@@ -31,7 +43,7 @@ const AddTopic = () => {
         alert("Error saving the topic");
       });
   };
-
+  
   return (
     <div className="min-h-screen bg-gray-100 p-6">
       <h2 className="text-3xl font-bold mb-6">Add a New Topic</h2>
@@ -64,19 +76,22 @@ const AddTopic = () => {
             <div key={index} className="flex items-center space-x-4">
               <p className="border p-2 flex-1">{block.text}</p>
               <select
-                className="border border-gray-300 p-2 rounded"
-                value={block.category}
-                onChange={(e) => {
-                  const updatedBlocks = [...blocks];
-                  updatedBlocks[index].category = e.target.value;
-                  setBlocks(updatedBlocks);
-                }}
-              >
-                <option value="understood">Understood</option>
-                <option value="somewhat-understood">Somewhat Understood</option>
-                <option value="not-clear">Not Clear</option>
-                <option value="what-rubbish">What Rubbish</option>
-              </select>
+  className="border border-gray-300 p-2 rounded"
+  value={block.category}
+  onChange={(e) => {
+    const updatedBlocks = blocks.map((b, i) =>
+      i === index ? { ...b, category: e.target.value } : b
+    );
+    setBlocks(updatedBlocks);
+  }}
+>
+  
+  <option value="understood">Understood</option>
+  <option value="somewhat-understood">Somewhat Understood</option>
+  <option value="not-clear">Not Clear</option>
+  <option value="what-rubbish">What Rubbish</option>
+</select>
+
             </div>
           ))}
         </div>
