@@ -4,7 +4,7 @@ import Home from "./Components/Home";
 import Login from "./Components/Forms/Login";
 import Register from "./Components/Forms/Register";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Dashboard from "./Components/Dashboard/Dashboard";
+import ProductDashboard from "./Components/Dashboard/ProductDashboard";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -28,7 +28,7 @@ function App() {
         },
         {
           path:"/dashboard",
-          element:<Dashboard/>,
+          element:<ProductDashboard/>,
         }
       ],
     },
