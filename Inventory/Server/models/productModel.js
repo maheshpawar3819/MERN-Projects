@@ -6,12 +6,6 @@ const productSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    //sku -stock keeping unit
-    sku: {
-      type: String,
-      required: true,
-      unique: true,
-    },
     price: {
       type: Number,
       required: true,

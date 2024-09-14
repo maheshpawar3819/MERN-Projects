@@ -21,5 +21,5 @@ const port = process.env.PORT || 5000;
 
 app.listen(port, () => {
   connectDb();
-  console.log(`server was listning on port ${port}`);
+  console.log(`Server is listening on port ${port}`);
 });

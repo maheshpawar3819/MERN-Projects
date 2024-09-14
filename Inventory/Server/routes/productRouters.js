@@ -9,7 +9,7 @@ const {
 } = require("../controllers/productController");
 
 //define routes
-router.route("/").get(protect, getProducts).post(protect, createProduct);
-router.route("/:id").put(protect, updateProduct).delete(protect, deleteProduct);
+router.route("/").get(getProducts).post(createProduct);
+router.route("/:id").put(updateProduct).delete(deleteProduct);
 
-module.exports=router;
+module.exports = router;
