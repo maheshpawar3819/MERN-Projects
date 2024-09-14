@@ -8,22 +8,17 @@ const topicRoutes = require("./Routes/topics");
 
 const app = express();
 
-
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
 
 // Routes
-app.use("/api/topics", topicRoutes);
+app.use("/topics", topicRoutes);
 
 // MongoDB connection
-mongoose
-  .connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("Connected to MongoDB"))
-  .catch((err) => console.error("Error connecting to MongoDB", err));
+  .catch(err => console.error("Error connecting to MongoDB", err));
 
 // Start server
 const PORT = process.env.PORT || 5000;
