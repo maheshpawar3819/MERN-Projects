@@ -3,13 +3,13 @@ import "./index.css";
 import { Outlet } from "react-router-dom";
 import AddTopic from "./Component/AddTopic";
 import Dashboard from "./Component/Dashboard";
+import Navbar from "./Component/Navbar";
 
 const App = () => {
   return (
     <div>
+      <Navbar/>
       <Outlet />
-      {/* <AddTopic /> */}
-      {/* <Dashboard/> */}
     </div>
   );
 };
