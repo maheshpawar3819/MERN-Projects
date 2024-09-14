@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const LandingPage = () => {
   const [username, setUsername] = useState("");
+  const [warning, setWarning] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -11,6 +12,8 @@ const LandingPage = () => {
     if (username) {
       localStorage.setItem("username", username);
       navigate("/dashboard");
+    } else {
+      setWarning(true); // Show warning if username is empty
     }
   };
 
@@ -26,8 +29,14 @@ const LandingPage = () => {
           className="border border-gray-300 p-2 mb-4 w-full rounded"
           placeholder="Enter your username"
           value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          onChange={(e) => {
+            setUsername(e.target.value);
+            setWarning(false); // Hide warning when user starts typing
+          }}
         />
+        {warning && (
+          <p className="text-red-500 mb-4">Username is required!</p> // Warning message
+        )}
         <button
           type="submit"
           className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-300"
