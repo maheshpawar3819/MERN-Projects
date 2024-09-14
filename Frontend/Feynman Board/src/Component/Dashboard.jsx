@@ -12,13 +12,12 @@ const Dashboard = () => {
   useEffect(() => {
     axios
       .get(`http://localhost:5000/topics?username=${username}`)
-      .then((response) =>
-         setTopics(response.data))
-      
+      .then((response) => setTopics(response.data))
+
       .catch((err) => console.error(err));
   }, [username]);
-  
-  console.log(topics)
+
+  console.log(topics);
 
   return (
     <div className="min-h-screen bg-gray-100 p-6">

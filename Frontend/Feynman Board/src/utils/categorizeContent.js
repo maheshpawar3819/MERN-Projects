@@ -5,7 +5,7 @@ const categorizeContent = (content) => {
   const blocks = content.split(delimiters).filter(Boolean);
   return blocks.map((block) => ({
     text: block,
-    category: "not-categorized",
+    category: "understood",
   }));
 };
 
