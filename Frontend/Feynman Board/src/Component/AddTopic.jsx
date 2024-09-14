@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "../index.css";
-
 import categorizeContent from "../utils/categorizeContent";
 
 const AddTopic = () => {
@@ -33,14 +34,14 @@ const AddTopic = () => {
       .post("http://localhost:5000/topics", topicData)
       .then((response) => {
         console.log("Topic saved:", response.data);
-        alert("Topic added successfully");
+        toast.success("Topic added successfully");
       })
       .catch((err) => {
         console.error(
           "Error saving the topic:",
           err.response ? err.response.data : err.message
         );
-        alert("Error saving the topic");
+        toast.error("Error saving the topic");
       });
   };
 
@@ -100,6 +101,7 @@ const AddTopic = () => {
           Save Topic
         </button>
       </form>
+      <ToastContainer />
     </div>
   );
 };
