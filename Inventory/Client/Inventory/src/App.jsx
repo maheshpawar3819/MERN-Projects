@@ -4,6 +4,7 @@ import Home from "./Components/Home";
 import Login from "./Components/Forms/Login";
 import Register from "./Components/Forms/Register";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Dashboard from "./Components/Dashboard/Dashboard";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -21,6 +22,10 @@ function App() {
           path: "/register",
           element: <Register />,
         },
+        {
+          path:"/dashboard",
+          element:<Dashboard/>,
+        }
       ],
     },
   ]);

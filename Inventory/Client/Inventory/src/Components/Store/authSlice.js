@@ -6,15 +6,18 @@ const authSlice = createSlice({
   initialState: {
     user: null,
     token: localStorage.getItem("token") || null,
+    isAuthenticated: !!localStorage.getItem("token"),
   },
   reducers: {
     setUser: (state, action) => {
-      state = action.payload.user;
-      state = action.payload.token;
+      state.user = action.payload.user;
+      state.token = action.payload.token;
+      state.isAuthenticated = true;
     },
     logoutUser: (state) => {
       state.user = null;
       state.token = null;
+      state.isAuthenticated = false;
     },
   },
 });
@@ -22,10 +25,21 @@ const authSlice = createSlice({
 export const { setUser, logoutUser } = authSlice.actions;
 
 export const login = (email, password) => async (dispatch) => {
-  const responce = await axios.post("", { email, password });
-  const { user, token } = await responce.data;
-  localStorage.setItem("token", token);
-  dispatch(setUser({ user, token }));
+  try {
+    const response = await axios.post("http://localhost:8080/api/auth/login", {
+      email,
+      password,
+    });
+
+    if (response === 200) {
+      const { user, token } = response.data;
+      localStorage.setItem("token", token);
+      dispatch(setUser({ user, token }));
+      console.log(user);
+    }
+  } catch (error) {
+    console.error("registeration faild");
+  }
 };
 
 export const register = (name, email, password, role) => async () => {

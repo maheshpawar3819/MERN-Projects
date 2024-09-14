@@ -9,7 +9,7 @@ const registerUser = async (req, res, next) => {
     const { name, email, password } = req.body;
     //hash the user password
     const hashedPassword = await bcrypt.hash(password, 10);
-    
+
     const userExist = await User.findOne({ email });
     //logic for check the provided email is already exist or not
     if (userExist) {
@@ -40,7 +40,7 @@ const loginUser = async (req, res, next) => {
         process.env.JWT_SECRET_KEY,
         { expiresIn: "30d" }
       );
-      res.json({ token });
+      res.json({ message: "user login Successfull", token });
     } else {
       res.status(404).json({ message: "invalid credentials" });
     }

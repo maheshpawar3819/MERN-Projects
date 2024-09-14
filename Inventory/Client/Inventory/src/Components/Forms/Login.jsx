@@ -1,10 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import { SiSimplelogin } from "react-icons/si";
-import { Link } from "react-router-dom";
-
-
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { login, setUser } from "../Store/authSlice";
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleSubmit = async (e) => {
+    try {
+      e.preventDefault();
+      await dispatch(login(email, password));
+      navigate("/dashboard");
+    } catch (error) {
+      alert("Login Faild");
+      throw error;
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center">
       <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-md">
@@ -15,7 +31,7 @@ const Login = () => {
           <h2 className="text-center text-2xl font-bold text-gray-700 mb-6">
             Login to Your Account
           </h2>
-          <form className="space-y-4">
+          <form className="space-y-4" onSubmit={handleSubmit}>
             <div>
               <label htmlFor="email" className="sr-only">
                 Email
@@ -24,6 +40,8 @@ const Login = () => {
                 type="email"
                 id="email"
                 placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:[#16423C] border-gray-300"
               />
             </div>
@@ -34,6 +52,8 @@ const Login = () => {
               <input
                 type="password"
                 id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter your password"
                 className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:[#16423C] border-gray-300"
               />
