@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"; // If you're using react-router for nav
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const username = localStorage.getItem("username"); // Check if user is logged in
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
@@ -18,9 +19,11 @@ const Navbar = () => {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex space-x-6">
-          <Link to="/dashboard" className="hover:text-gray-200 transition duration-300">
-            Dashboard
-          </Link>
+          {username && ( // Conditionally render the link based on login status
+            <Link to="/dashboard" className="hover:text-gray-200 transition duration-300">
+              Dashboard
+            </Link>
+          )}
           {/* Add more links as needed */}
         </div>
 
@@ -43,13 +46,15 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       <div className={`md:hidden ${isOpen ? "block" : "hidden"} mt-2`}>
-        <Link 
-          to="/dashboard" 
-          className="block px-4 py-2 text-white hover:bg-blue-700 transition duration-300"
-          onClick={toggleMenu} // Close menu on item click
-        >
-          Dashboard
-        </Link>
+        {username && ( // Conditionally render the link based on login status
+          <Link 
+            to="/dashboard" 
+            className="block px-4 py-2 text-white hover:bg-blue-700 transition duration-300"
+            onClick={toggleMenu} // Close menu on item click
+          >
+            Dashboard
+          </Link>
+        )}
         {/* Add more links as needed */}
       </div>
     </nav>

@@ -9,12 +9,23 @@ const LandingPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (username) {
+
+    // Check if username is not empty and contains only alphanumeric characters
+    const isValidUsername = /^[a-zA-Z0-9]+$/.test(username);
+
+    if (username && isValidUsername) {
       localStorage.setItem("username", username);
       navigate("/dashboard");
     } else {
-      setWarning(true); // Show warning if username is empty
+      setWarning(true); // Show warning if username is invalid or empty
     }
+  };
+
+  const handleChange = (e) => {
+    // Remove spaces from the input value
+    const value = e.target.value.replace(/\s/g, '');
+    setUsername(value);
+    setWarning(false); // Hide warning when user starts typing
   };
 
   return (
@@ -29,13 +40,12 @@ const LandingPage = () => {
           className="border border-gray-300 p-2 mb-4 w-full rounded"
           placeholder="Enter your username"
           value={username}
-          onChange={(e) => {
-            setUsername(e.target.value);
-            setWarning(false); // Hide warning when user starts typing
-          }}
+          onChange={handleChange}
         />
         {warning && (
-          <p className="text-red-500 mb-4">Username is required!</p> // Warning message
+          <p className="text-red-500 mb-4">
+            Username is required and must be alphanumeric without spaces!
+          </p> // Warning message
         )}
         <button
           type="submit"
