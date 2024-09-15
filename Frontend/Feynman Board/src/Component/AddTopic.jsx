@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import "react-toastify/dist/ReactToastify.css";
 import "../index.css";
 import categorizeContent from "../utils/categorizeContent";
@@ -9,6 +10,7 @@ const AddTopic = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [blocks, setBlocks] = useState([]);
+  const navigate = useNavigate(); // Initialize useNavigate
 
   const handleCategorize = () => {
     const categorizedBlocks = categorizeContent(content);
@@ -35,6 +37,7 @@ const AddTopic = () => {
       .then((response) => {
         console.log("Topic saved:", response.data);
         toast.success("Topic added successfully");
+        navigate("/dashboard"); // Redirect to the dashboard
       })
       .catch((err) => {
         console.error(
