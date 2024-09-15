@@ -11,7 +11,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/topics?username=${username}`)
+      .get(`https://feynman-board.onrender.com/topics?username=${username}`)
       .then((response) => setTopics(response.data))
 
       .catch((err) => console.error(err));

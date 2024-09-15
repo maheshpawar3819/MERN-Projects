@@ -31,7 +31,7 @@ const AddTopic = () => {
     console.log({ username, title, blocks: updatedBlocks }); // Log before submission
 
     axios
-      .post("http://localhost:5000/topics", topicData)
+      .post("https://feynman-board.onrender.com/topics", topicData)
       .then((response) => {
         console.log("Topic saved:", response.data);
         toast.success("Topic added successfully");
