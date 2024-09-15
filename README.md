@@ -1,3 +1,3 @@
 ### 🖥️ Live Demo
 
-Check out the live project: [MyBlog](https://feynamnsboard.netlify.app/)
+Check out the live project: [Feynman Board](https://feynamnsboard.netlify.app/)
