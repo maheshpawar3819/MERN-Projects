@@ -12,11 +12,6 @@ const Dashboard = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!username) {
-      toast.warn("You are not logged in. Redirecting to the landing page.");
-      navigate("/"); // Redirect to the landing page if not logged in
-      return;
-    }
 
     axios
       .get(`https://feynman-board.onrender.com/topics?username=${username}`)
