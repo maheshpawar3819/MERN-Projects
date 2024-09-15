@@ -8,25 +8,35 @@ import "../index.css";
 
 const Dashboard = () => {
   const [topics, setTopics] = useState([]);
-  const username = localStorage.getItem("username");
+  const username = localStorage.getItem("username"); // Check if the username exists
   const navigate = useNavigate();
 
   useEffect(() => {
+    // Redirect if no username (user is not logged in)
+    if (!username) {
+      toast.error("You must be logged in to view the dashboard.");
+      navigate("/login"); // Redirect to login page
+      return;
+    }
 
+    // Fetch topics if the user is logged in
     axios
       .get(`https://feynman-board.onrender.com/topics?username=${username}`)
       .then((response) => setTopics(response.data))
       .catch((err) => console.error(err));
   }, [username, navigate]);
 
+  // If the username doesn't exist, return null to prevent the dashboard from rendering
+  if (!username) {
+    return null; // This ensures nothing renders before the redirection
+  }
+
   return (
     <div className="min-h-screen bg-gray-100 p-6">
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-2xl font-bold">Welcome, {username}</h1>
         <Link to="/addtopic">
-          <button
-            className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600"
-          >
+          <button className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600">
             Add Topic
           </button>
         </Link>
