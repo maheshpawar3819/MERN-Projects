@@ -42,6 +42,26 @@ const deleteUserById = async (req, res, next) => {
   }
 };
 
+//logic to update user
+
+const updateUserById = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    //get data for server by createing custom property
+    const udpatedUserData = req.body;
+
+    const updateUser = await User.updateOne(
+      { _id: id },
+      {
+        $set: udpatedUserData,
+      }
+    );
+    return res.status(200).json(updateUser);
+  } catch (error) {
+    next(error);
+  }
+};
+
 //All contacts logic for admin pannel
 
 const getAllContacts = async (req, res, next) => {
@@ -60,4 +80,4 @@ const getAllContacts = async (req, res, next) => {
   }
 };
 
-module.exports = { getAllUsers, getAllContacts, deleteUserById, getUserById };
+module.exports = { getAllUsers, getAllContacts, deleteUserById, getUserById,updateUserById};

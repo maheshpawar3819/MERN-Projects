@@ -6,6 +6,7 @@ const {
   getAllContacts,
   deleteUserById,
   getUserById,
+  updateUserById,
 } = require("../controllers/admin-controller");
 const authMiddleware = require("../middlewares/auth-middleware");
 
@@ -14,6 +15,12 @@ router.route("/contacts").get(authMiddleware, getAllContacts);
 
 //route for edit user
 router.route("/users/:id").get(authMiddleware, adminMiddleware, getUserById);
+
+//to update the user data
+
+router
+  .route("/users/update/:id")
+  .patch(authMiddleware, adminMiddleware, updateUserById);
 
 //route for delete user
 router
