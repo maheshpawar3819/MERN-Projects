@@ -11,7 +11,6 @@ const AdminUpdate = () => {
   });
 
   const params = useParams();
-  console.log("get user by params", params);
   const { authorizationToken } = useAuth();
 
   //get single user data
@@ -61,7 +60,7 @@ const AdminUpdate = () => {
               {/* registeration form  */}
 
               <div className="registration-form">
-                <h1 className="main-heading mb-3">Update form</h1>
+                <h1 className="main-heading mb-3">Update User</h1>
                 <br />
                 <form action="">
                   <div>
