@@ -33,4 +33,18 @@ const createUser=async (req,res) => {
     }
 }
 
-module.exports={home,createUser}
+//read user by id
+
+const getUser=async (req,res) => {
+    try {
+        const {id}=req.params;
+        const user=await prisma.user.findUnique({
+            where:{id:parseInt(id)}
+        })
+        res.status(200).json(user);
+    } catch (error) {
+        res.status(500).json({msg:"someting wrong cannot able to find user by id"});
+    }
+}
+
+module.exports={home,createUser,getUser}

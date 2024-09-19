@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 //define routs
-app.use("/api/user",userRoute)
+app.use("/api/auth",userRoute)
 
 //server
 const port = process.env.PORT || 5000;
