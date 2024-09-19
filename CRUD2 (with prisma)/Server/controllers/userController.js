@@ -47,4 +47,26 @@ const getUser=async (req,res) => {
     }
 }
 
-module.exports={home,createUser,getUser}
+//update user
+
+const updateUser=async (req,res)=> {
+    try {
+        const {id}=req.params;
+        const {name,email}=req.body;
+        const updateuser=await prisma.user.update({
+            where:{id:parseInt(id)},
+            data:{name,email},
+            select:{
+                id:true,
+                name:true,
+                email:true,
+                password:false
+            }
+        })
+        res.status(200).json({msg:`user update successfully`,updateduser:updateuser});
+    } catch (error) {
+        res.status(500).json({msg:`someting wrong unable to update user`});
+    }
+}
+
+module.exports={home,createUser,getUser,updateUser}
