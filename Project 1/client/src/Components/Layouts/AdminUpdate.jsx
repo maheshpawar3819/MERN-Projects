@@ -42,6 +42,15 @@ const AdminUpdate = () => {
     getUserById();
   }, []);
 
+  const handleInput = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setUser({
+      ...user,
+      [name]: value,
+    });
+  };
+
   return (
     <div>
       <section>
@@ -73,6 +82,7 @@ const AdminUpdate = () => {
                       required
                       autoComplete="off"
                       value={user.username}
+                      onChange={handleInput}
                     />
                   </div>
                   <div>
@@ -85,6 +95,7 @@ const AdminUpdate = () => {
                       required
                       autoComplete="off"
                       value={user.email}
+                      onChange={handleInput}
                     />
                   </div>
                   <div>
@@ -97,18 +108,20 @@ const AdminUpdate = () => {
                       required
                       autoComplete="off"
                       value={user.phone}
+                      onChange={handleInput}
                     />
                   </div>
                   <div>
                     <label htmlFor="valid">Is Admin</label>
                     <input
                       type="text"
-                      name="is admin"
+                      name="isAdmin"
                       placeholder="give admin access or not"
-                      id="is amdin"
+                      id="isAdmin"
                       required
                       autoComplete="off"
                       value={user.isAdmin}
+                      onChange={handleInput}
                     />
                   </div>
                   <br />
