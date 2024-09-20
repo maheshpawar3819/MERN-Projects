@@ -64,16 +64,18 @@ const Home = () => {
           </thead>
           <tbody>
             {data.map((ele) => {
-              const { id, name, email, password } = ele;
+              const { id, name, email} = ele;
               return (
                 <tr key={id} className="border-b hover:bg-gray-50">
                   <td className="py-2 px-4 text-sm">{id}</td>
                   <td className="py-2 px-4 text-sm">{name}</td>
                   <td className="py-2 px-4 text-sm">{email}</td>
                   <td className="py-2 px-4 text-sm flex space-x-2">
-                    <button className="text-blue-500 hover:underline">
-                      Edit
-                    </button>
+                    <Link to={`/update/${id}`}>
+                      <button className="text-blue-500 hover:underline">
+                        Edit
+                      </button>
+                    </Link>
                     <button
                       className="text-red-500 hover:underline"
                       onClick={() => deleteUser(id)}
