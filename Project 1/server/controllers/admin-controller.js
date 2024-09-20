@@ -47,6 +47,7 @@ const deleteUserById = async (req, res, next) => {
 const updateUserById = async (req, res, next) => {
   try {
     const id = req.params.id;
+    // console.log(id);
     //get data for server by createing custom property
     const udpatedUserData = req.body;
 

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../../store/auth";
+import { toast } from "react-toastify";
+import { Navigate } from "react-router-dom";
 
 const AdminUpdate = () => {
   const [user, setUser] = useState({
@@ -12,6 +14,8 @@ const AdminUpdate = () => {
 
   const params = useParams();
   const { authorizationToken } = useAuth();
+  const navigate=useNavigate()
+  
 
   //get single user data
 
@@ -51,6 +55,31 @@ const AdminUpdate = () => {
     });
   };
 
+  const updateUser = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch(
+        `http://localhost:8080/api/admin/users/update/${params.id}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: authorizationToken,
+          },
+          body: JSON.stringify(user),
+        }
+      );
+      if (response.ok) {
+        toast.success(`User Update Successfully`);
+        navigate("/admin/users");
+      } else {
+        toast.error(`Not able to update user`);
+      }
+    } catch (error) {
+      toast.error(`Someting wrong user not Updated`);
+    }
+  };
+
   return (
     <div>
       <section>
@@ -71,9 +100,9 @@ const AdminUpdate = () => {
               <div className="registration-form">
                 <h1 className="main-heading mb-3">Update User</h1>
                 <br />
-                <form action="">
+                <form action="" onSubmit={updateUser}>
                   <div>
-                    <label htmlFor="usesrname">usesrname</label>
+                    <label htmlFor="usesrname">username</label>
                     <input
                       type="text"
                       name="username"
