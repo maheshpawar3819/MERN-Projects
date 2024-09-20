@@ -11,6 +11,8 @@ const {
 const authMiddleware = require("../middlewares/auth-middleware");
 
 router.route("/users").get(authMiddleware, adminMiddleware, getAllUsers);
+
+//route to get all contacts
 router.route("/contacts").get(authMiddleware, getAllContacts);
 
 //route for edit user
