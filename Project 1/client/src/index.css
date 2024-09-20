@@ -576,3 +576,9 @@ table tbody td button.delete {
 table tbody td button.delete:hover {
   background-color: #c82333;
 }
+
+/* for toastify */
+.toast-message{
+  font-size: 15px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}

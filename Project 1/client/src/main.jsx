@@ -21,6 +21,7 @@ createRoot(document.getElementById("root")).render(
         draggable
         pauseOnHover
         theme="colored"
+        toastClassName="toast-message"
       />
     </StrictMode>
   </AuthPorvider>

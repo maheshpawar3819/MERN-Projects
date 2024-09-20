@@ -14,8 +14,7 @@ const AdminUpdate = () => {
 
   const params = useParams();
   const { authorizationToken } = useAuth();
-  const navigate=useNavigate()
-  
+  const navigate = useNavigate();
 
   //get single user data
 
@@ -70,7 +69,7 @@ const AdminUpdate = () => {
         }
       );
       if (response.ok) {
-        toast.success(`User Update Successfully`);
+        toast.success(`User Update Successfully ${user.username}`);
         navigate("/admin/users");
       } else {
         toast.error(`Not able to update user`);
