@@ -3,7 +3,14 @@ const prisma = new PrismaClient();
 
 const home = async (req, res) => {
   try {
-    const users = await prisma.user.findMany();
+    const users = await prisma.user.findMany({
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        password: false,
+      },
+    });
     res.status(200).json(users);
   } catch (error) {
     res.status(500).json({ msg: "something wrong internal server error" });
@@ -81,7 +88,9 @@ const deletUser = async (req, res) => {
     const removeUser = await prisma.user.delete({
       where: { id: parseInt(id) },
     });
-    res.status(200).json({ msg: `user delete user successfully`,user:removeUser });
+    res
+      .status(200)
+      .json({ msg: `user delete user successfully`, user: removeUser });
   } catch (error) {
     res.status(500).json({ msg: `someting wrong not able to delete user` });
   }
