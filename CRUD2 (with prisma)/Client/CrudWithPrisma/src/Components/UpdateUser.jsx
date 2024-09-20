@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const UpdateUser = () => {
   const [user, setUser] = useState({
@@ -13,6 +13,7 @@ const UpdateUser = () => {
   }, []);
 
   const { id } = useParams();
+  const navigate=useNavigate();
 
   //get the data of user
   const getUserData = async () => {
@@ -20,7 +21,7 @@ const UpdateUser = () => {
       const response = await axios.get(
         `http://localhost:8080/api/auth/user/${id}`
       );
-      console.log(response.data);
+    //   console.log(response.data);
       const { name, email } = response?.data;
       setUser({
         name: name,
@@ -35,15 +36,32 @@ const UpdateUser = () => {
     const name = e.target.name;
     const value = e.target.value;
     setUser({
-      ...value,
+      ...user,
       [name]: value,
     });
+  };
+
+  const updateUser = async (e) => {
+    e.preventDefault();
+    try {
+        //destructure data of user
+        const {name,email}=user;
+      const response = await axios.put(
+        `http://localhost:8080/api/auth/user/${id}`,{name,email}
+      );
+      if(response.status===200){
+        alert(`user updated successfully`);
+        navigate("/");
+      }
+    } catch (error) {
+      console.log(`something wrong not able to update user`);
+    }
   };
 
   return (
     <div className="max-w-md mx-auto mt-32 p-6 bg-gray-300 shadow-md rounded-md">
       <h2 className="text-2xl font-bold mb-6 text-center">Create User</h2>
-      <form>
+      <form onSubmit={updateUser}>
         <div className="mb-4">
           <label
             className="block text-sm font-medium text-gray-700 mb-2"
