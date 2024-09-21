@@ -1,9 +1,26 @@
 import React from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { FaUser, FaRegListAlt, FaHome } from "react-icons/fa";
 import { IoMdContacts } from "react-icons/io";
+import { useAuth } from "../../store/auth";
+import { toast } from "react-toastify";
 
 const AdminLayout = () => {
+  const navigate = useNavigate();
+  //get user from store to check the user is admin or not
+  const { user, isLoading } = useAuth();
+  // console.log(user);
+
+  //check is loading state
+  if (isLoading) {
+    return <h1>Loading..</h1>;
+  }
+
+  if (!user.isAdmin) {
+    navigate("/");
+    return toast.error(`you are not an Admin`);
+  } 
+
   return (
     <div>
       <header>
