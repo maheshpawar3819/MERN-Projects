@@ -14,6 +14,7 @@ import AdminLayout from "./Components/Layouts/AdminLayout";
 import AdminUsers from "./Components/Layouts/AdminUsers";
 import AdminContact from "./Components/Layouts/AdminContact";
 import AdminUpdate from "./Components/Layouts/AdminUpdate";
+import AdminServices from "./Components/Layouts/AdminServices";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
           <Route path="/admin" element={<AdminLayout />}>
             <Route path="users" element={<AdminUsers />} />
             <Route path="contacts" element={<AdminContact />} />
+            <Route path="services" element={<AdminServices />} />
             <Route path="users/:id/edit" element={<AdminUpdate />} />
           </Route>
         </Routes>

@@ -7,7 +7,7 @@ export const AuthPorvider = ({ children }) => {
   const [user, setUser] = useState("");
   // for wait until user data comming 
   const [isLoading,setIsLoading]=useState(true);
-  const [services, setServices] = useState("");
+  const [services, setServices] = useState([]);
   const authorizationToken=`Bearer ${token}`;
 
   const storedtokenInls = (serverToken) => {

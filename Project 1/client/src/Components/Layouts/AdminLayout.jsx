@@ -18,8 +18,8 @@ const AdminLayout = () => {
 
   if (!user.isAdmin) {
     navigate("/");
-    return toast.error(`you are not an Admin`);
-  } 
+    return toast.error(`Access Denied user not An Admin`);
+  }
 
   return (
     <div>
