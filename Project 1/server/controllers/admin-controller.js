@@ -81,4 +81,23 @@ const getAllContacts = async (req, res, next) => {
   }
 };
 
-module.exports = { getAllUsers, getAllContacts, deleteUserById, getUserById,updateUserById};
+//To delete contact data
+
+const deleteContanct = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const deleteC = await Contact.deleteOne({ _id: id });
+    res.status(200).json(deleteC);
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = {
+  getAllUsers,
+  getAllContacts,
+  deleteUserById,
+  getUserById,
+  updateUserById,
+  deleteContanct
+};
