@@ -2,6 +2,9 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const cors = require("cors");
+const errorMiddleware = require("./middlewares/error-middleware");
+//routes
+const authRoute = require("./routes/aurhRoute");
 
 //handling cors policy
 const corsOpetions = {
@@ -16,7 +19,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // routes
-app.use("/api/auth");
+app.use("/api/auth", authRoute);
+
+//error middleware
+app.use(errorMiddleware);
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => {

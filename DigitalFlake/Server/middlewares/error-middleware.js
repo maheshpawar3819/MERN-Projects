@@ -11,3 +11,5 @@ const errorMiddleware = async (req, res, err) => {
     console.log(error);
   }
 };
+
+module.exports=errorMiddleware;
