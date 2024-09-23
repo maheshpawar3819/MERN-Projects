@@ -28,7 +28,12 @@ const Navbar = () => {
               </li>
               {isLoggedIn ? (
                 <li>
-                  <NavLink to={"/logout"}>Logout</NavLink>
+                  <NavLink
+                    to={"/logout"}
+                    onClick={() => window.location.reload()}
+                  >
+                    Logout
+                  </NavLink>
                 </li>
               ) : (
                 <>

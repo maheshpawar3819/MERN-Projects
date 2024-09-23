@@ -10,7 +10,7 @@ const Login = () => {
   });
 
   const navigate = useNavigate();
-  const { storedtokenInls } = useAuth();
+  const { storedtokenInls , userAuthentication} = useAuth();
 
   const handleInput = (e) => {
     let name = e.target.name;
@@ -39,7 +39,7 @@ const Login = () => {
         storedtokenInls(res_data.token);
         toast.success("Login Successfull🔓");
         setUser({ email: "", password: "" });
-
+        window.location.reload();
         navigate("/");
       } else {
         toast.error("Invalid Credential🔒");
