@@ -52,4 +52,50 @@ const registerUser = async (req, res, next) => {
   }
 };
 
-module.exports = { registerUser };
+//for login the user
+
+const loginUser = async (req, res, next) => {
+  try {
+    const { email, password } = req.body;
+
+    //check email valid or not
+    const isExist = await prisma.user.findFirst({
+      where: { email },
+    });
+
+    if (!isExist) {
+      return res
+        .status(401)
+        .json({ message: "email is not exist plese enter the correct email" });
+    }
+
+    //compare password
+    const isPasswordValid = await bcrypt.compare(password, isExist.password);
+
+    //check password and emil
+    if (!isPasswordValid) {
+      res.status(401).json({ message: "Invalid Email and password" });
+    }
+
+    //genereate json token
+    const token = jwt.sign({ id: isExist.id }, process.env.JWT_SECRET_KEY, {
+      expiresIn: "1h",
+    });
+
+    //sending response with token and id
+
+    res.status(200).json({
+      message: "successfully login",
+      token,
+      user: {
+        id: isExist.id,
+        email: isExist.email,
+        name: isExist.name,
+      },
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = { registerUser, loginUser };
