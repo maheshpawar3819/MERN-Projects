@@ -13,3 +13,48 @@ model User {
   email String
   password String
 }
+
+model Category {
+  id            Int           @id @default(autoincrement())
+  name          String
+  imageUrl      String
+  status        CategoryStatus
+  subcategories Subcategory[]
+  products      Product[]
+}
+
+model Subcategory {
+  id            Int           @id @default(autoincrement())
+  name          String
+  imageUrl      String
+  status        SubcategoryStatus
+  category      Category       @relation(fields: [categoryId], references: [id])
+  categoryId    Int
+  products      Product[]
+}
+
+model Product {
+  id            Int           @id @default(autoincrement())
+  name          String
+  imageUrl      String
+  status        ProductStatus
+  category      Category       @relation(fields: [categoryId], references: [id])
+  categoryId    Int
+  subcategory   Subcategory    @relation(fields: [subcategoryId], references: [id])
+  subcategoryId Int
+}
+
+enum CategoryStatus {
+  active
+  inactive
+}
+
+enum SubcategoryStatus {
+  active
+  inactive
+}
+
+enum ProductStatus {
+  active
+  inactive
+}
