@@ -39,7 +39,6 @@ const Login = () => {
         storedtokenInls(res_data.token);
         toast.success("Login Successfull🔓");
         setUser({ email: "", password: "" });
-        window.location.reload();
         navigate("/");
       } else {
         toast.error("Invalid Credential🔒");
