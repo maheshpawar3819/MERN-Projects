@@ -9,23 +9,35 @@ const loginMiddleware = async (req, res, next) => {
   try {
     const token = req.headers["authorization"];
 
+    // console.log(token);
     if (!token) {
       return res.status(401).json({
         message: "token not provided",
       });
     }
 
-    console.log(token)
-    jwt.verify(token, process.env.JWT_SECRET_KEY, (err, decoded) => {
-      if (err) {
-        res.status(401).json({
-          message: "faild to authenticate token",
-        });
-      }
-      // save user id
-      req.userId = decoded.id;
-      next();
+    //extract the token
+    const jwtToken = token.split(" ")[1];
+
+    // console.log(token)
+    const isVerified = jwt.verify(jwtToken, process.env.JWT_SECRET_KEY);
+    const userData = await prisma.user.findUnique({
+      where: { id: isVerified.id },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        //not send password to frontend
+        password: false,
+      },
     });
+
+    // creating custom properties
+    req.user = userData;
+    req.token = token;
+    req.userId = userData.id;
+
+    next();
   } catch (error) {
     next(error);
   }
