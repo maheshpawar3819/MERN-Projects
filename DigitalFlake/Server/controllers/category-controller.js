@@ -1,5 +1,7 @@
 const { PrismaClient } = require("@prisma/client");
-const { PrismaClientValidationError } = require("@prisma/client/runtime/library");
+const {
+  PrismaClientValidationError,
+} = require("@prisma/client/runtime/library");
 const prisma = new PrismaClient();
 
 //to get all categories
@@ -19,19 +21,18 @@ const getCategories = async (req, res, next) => {
 const createNewCategory = async (req, res, next) => {
   try {
     const { name, imageUrl, status } = req.body;
-    console.log(name)
     //check if any field is empty
     if ((!name, !imageUrl, !status)) {
       return res.status(401).json({ message: "plese fill all fields" });
     }
 
-    const isExist=await prisma.category.findFirst({
-        where:{name:name}
-    })
+    const isExist = await prisma.category.findFirst({
+      where: { name: name },
+    });
 
     //check is category already exist
-    if(isExist){
-        return res.status(401).json({message:"Category is already exist"});
+    if (isExist) {
+      return res.status(401).json({ message: "Category is already exist" });
     }
 
     const createCategory = await prisma.category.create({
@@ -43,7 +44,9 @@ const createNewCategory = async (req, res, next) => {
     });
 
     //sending response
-    res.status(200).json({ createCategory ,message:"category added successfully"});
+    res
+      .status(200)
+      .json({ createCategory, message: "category added successfully" });
   } catch (error) {
     next();
   }
@@ -69,10 +72,9 @@ const updateCategory = async (req, res, next) => {
 };
 
 //to delete category
-const deleteCategory = async (res, req, next) => {
+const deleteCategory = async (req, res, next) => {
   try {
     const { id } = req.params;
-
     await prisma.category.delete({
       where: { id: parseInt(id) },
     });
@@ -83,9 +85,24 @@ const deleteCategory = async (res, req, next) => {
   }
 };
 
+//to get category by id
+
+const getCategory = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const category = await prisma.category.findUnique({
+      where: { id: parseInt(id) },
+    });
+    res.status(201).json({ category });
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   getCategories,
   createNewCategory,
   updateCategory,
   deleteCategory,
+  getCategory,
 };
