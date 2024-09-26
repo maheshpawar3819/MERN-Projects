@@ -5,7 +5,8 @@ const cors = require("cors");
 const errorMiddleware = require("./middlewares/error-middleware");
 //routes
 const authRoute = require("./routes/aurhRoute");
-const categoryRoute=require("./routes/categoryRoute");
+const categoryRoute = require("./routes/categoryRoute");
+const subCategoryRoute = require("./routes/subCategoryRoute");
 
 //handling cors policy
 const corsOpetions = {
@@ -22,7 +23,9 @@ app.use(express.urlencoded({ extended: true }));
 // routes
 app.use("/api/auth", authRoute);
 // to category
-app.use("/api/categories",categoryRoute);
+app.use("/api/categories", categoryRoute);
+//to subCategory
+app.use("/api/subcategory", subCategoryRoute);
 
 //error middleware
 app.use(errorMiddleware);

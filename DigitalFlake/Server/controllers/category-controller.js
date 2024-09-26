@@ -28,7 +28,7 @@ const createNewCategory = async (req, res, next) => {
   try {
     const { name, imageUrl, status, isDelete } = req.body;
     //check if any field is empty
-    if ((!name, !imageUrl, !status)) {
+    if (!name || !imageUrl || !status) {
       return res.status(401).json({ message: "plese fill all fields" });
     }
 
