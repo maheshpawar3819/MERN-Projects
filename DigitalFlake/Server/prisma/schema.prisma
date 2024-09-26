@@ -12,7 +12,7 @@ model User {
   name String
   email String
   password String
-  idDelete      Boolean       @default(false)
+  isDelete      Boolean       @default(false)
 }
 
 model Category {
@@ -22,7 +22,7 @@ model Category {
   status        CategoryStatus
   subcategories Subcategory[]
   products      Product[]
-  idDelete      Boolean       @default(false)
+  isDelete      Boolean       @default(false)
 }
 
 model Subcategory {
@@ -33,7 +33,7 @@ model Subcategory {
   category      Category       @relation(fields: [categoryId], references: [id])
   categoryId    Int
   products      Product[]
-  idDelete      Boolean       @default(false)
+  isDelete      Boolean       @default(false)
 }
 
 model Product {
@@ -45,7 +45,7 @@ model Product {
   categoryId    Int
   subcategory   Subcategory    @relation(fields: [subcategoryId], references: [id])
   subcategoryId Int
-  idDelete      Boolean       @default(false)
+  isDelete      Boolean       @default(false)
 }
 
 enum CategoryStatus {

@@ -9,8 +9,14 @@ const prisma = new PrismaClient();
 const getCategories = async (req, res, next) => {
   try {
     const categories = await prisma.category.findMany({
+      where: { isDelete: false }, // Fetch only non-deleted categories
       include: { subcategories: true, products: true },
     });
+
+    if (!categories) {
+      return res.status(404).json({ message: "No categories found" });
+    }
+
     res.status(200).json(categories);
   } catch (error) {
     next(error);
@@ -20,7 +26,7 @@ const getCategories = async (req, res, next) => {
 // to create new category
 const createNewCategory = async (req, res, next) => {
   try {
-    const { name, imageUrl, status } = req.body;
+    const { name, imageUrl, status, isDelete } = req.body;
     //check if any field is empty
     if ((!name, !imageUrl, !status)) {
       return res.status(401).json({ message: "plese fill all fields" });
@@ -56,12 +62,12 @@ const createNewCategory = async (req, res, next) => {
 const updateCategory = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const { name, imageUrl, status } = req.body;
+    const { name, imageUrl, status, isDelete } = req.body;
 
     //update category
     const updateC = await prisma.category.update({
       where: { id: parseInt(id) },
-      data: { name, imageUrl, status },
+      data: { name, imageUrl, status, isDelete },
     });
 
     //send response
@@ -91,8 +97,14 @@ const getCategory = async (req, res, next) => {
   try {
     const { id } = req.params;
     const category = await prisma.category.findUnique({
-      where: { id: parseInt(id) },
+      where: { id: parseInt(id), isDelete: false },
     });
+
+    // Check if the category is deleted or doesn't exist
+    if (!category || category.isDelete === true) {
+      return res.status(404).json({ message: "Category not found" });
+    }
+
     res.status(201).json({ category });
   } catch (error) {
     next(error);
