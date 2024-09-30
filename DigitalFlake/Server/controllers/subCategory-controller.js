@@ -86,6 +86,7 @@ const getCategory = async (req, res, next) => {
   try {
     const get = await prisma.subcategory.findUnique({
       where: { id: parseInt(id), isDelete: false },
+      include: { category: true, products: true },
     });
 
     if (!get || get.isDelete === true) {
