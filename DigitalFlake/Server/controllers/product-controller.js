@@ -11,11 +11,11 @@ const getProducts = async (req, res, next) => {
       include: { category: true, subcategory: true },
     });
 
-    if (!getP) {
+    if (getP.length === 0) {
       return res.status(401).json({ message: "no product found" });
     }
 
-    res.status(200).json({ getP });
+    res.status(200).json(getP);
   } catch (error) {
     next();
   }
@@ -26,8 +26,8 @@ const getProducts = async (req, res, next) => {
 const createProduct = async (req, res, next) => {
   const { name, imageUrl, status, categoryId, subcategoryId } = req.body;
   try {
-    if (!name || !imageUrl || !status || !categoryId || subcategoryId) {
-      return res.status(401).json({ message: "plese fill all fields" });
+    if (!name || !imageUrl || !status || !categoryId || !subcategoryId) {
+      return res.status(400).json({ message: "Please fill all fields" });
     }
 
     const create = await prisma.product.create({
@@ -68,7 +68,7 @@ const updateProduct = async (req, res, next) => {
     }
 
     //send response
-    res.status(200).json({ message: "product updated successfully" }, update);
+    res.status(200).json({ message: "product updated successfully", update });
   } catch (error) {
     next(error);
   }
@@ -99,11 +99,15 @@ const getProduct = async (req, res, next) => {
   try {
     const getP = await prisma.product.findUnique({
       where: { id: parseInt(id), isDelete: false },
+      include: { category: true, subcategory: true },
     });
 
     if (!getP || getP.isDelete === true) {
       return res.status(401).json({ message: "Product not found" });
     }
+
+    //sending response
+    res.status(200).json({ message: "successfully get product", getP });
   } catch (error) {
     next(error);
   }

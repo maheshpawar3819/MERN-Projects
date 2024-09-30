@@ -15,12 +15,12 @@ router.route("/products").get(getProducts);
 router.route("/create").post(createProduct);
 
 //route to update product
-router.route("/upadte").put(updateProduct);
+router.route("/update/:id").put(updateProduct);
 
 //route to delete product
-router.route("/delete").delete(deleteProduct);
+router.route("/delete/:id").delete(deleteProduct);
 
 //route to get product by id
-router.route("/product").get(getProduct);
+router.route("/product/:id").get(getProduct);
 
 module.exports = router;
