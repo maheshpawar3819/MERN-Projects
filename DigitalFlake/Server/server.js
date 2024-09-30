@@ -7,6 +7,7 @@ const errorMiddleware = require("./middlewares/error-middleware");
 const authRoute = require("./routes/aurhRoute");
 const categoryRoute = require("./routes/categoryRoute");
 const subCategoryRoute = require("./routes/subCategoryRoute");
+const productRoute=require("./routes/productRoute");
 
 //handling cors policy
 const corsOpetions = {
@@ -26,6 +27,8 @@ app.use("/api/auth", authRoute);
 app.use("/api/categories", categoryRoute);
 //to subCategory
 app.use("/api/subcategory", subCategoryRoute);
+//to product
+app.use("/api/product",productRoute);
 
 //error middleware
 app.use(errorMiddleware);
