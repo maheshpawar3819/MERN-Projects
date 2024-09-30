@@ -1,4 +1,5 @@
 const { PrismaClient } = require("@prisma/client");
+const { isDirty } = require("zod");
 const prisma = new PrismaClient();
 
 //get all all products
@@ -92,4 +93,26 @@ const deleteProduct = async (req, res, next) => {
   } catch (error) {}
 };
 
-module.exports = { getProducts, createProduct, updateProduct, deleteProduct };
+//to get product by id
+const getProduct = async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const getP = await prisma.product.findUnique({
+      where: { id: parseInt(id), isDelete: false },
+    });
+
+    if (!getP || getP.isDelete === true) {
+      return res.status(401).json({ message: "Product not found" });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = {
+  getProducts,
+  createProduct,
+  updateProduct,
+  deleteProduct,
+  getProduct,
+};

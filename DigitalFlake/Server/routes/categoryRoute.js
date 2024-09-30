@@ -17,5 +17,7 @@ router.route("/categories").post(createNewCategory);
 router.route("/categories/:id").put(updateCategory);
 //to delete category
 router.route("/categories/:id").delete(deleteCategory);
+//to get category by id
+router.route("/categories/:id").get(getCategory);
 
 module.exports = router;

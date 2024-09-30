@@ -80,9 +80,29 @@ const deleteSubCategory = async (req, res, next) => {
   }
 };
 
+//get subcategory by id
+const getCategory = async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const get = await prisma.subcategory.findUnique({
+      where: { id: parseInt(id), isDelete: false },
+    });
+
+    if (!get || get.isDelete === true) {
+      return res.status(401).json({ message: "SubCategory not found" });
+    }
+
+    //sending response
+    res.status(200).json({ get });
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   getSubcategories,
   createSubCategory,
   updateSubCategory,
   deleteSubCategory,
+  getCategory,
 };
