@@ -2,6 +2,7 @@ import AddCategory from "./Components/Category.jsx/AddCategory";
 import Category from "./Components/Category.jsx/Category";
 import EditCategory from "./Components/Category.jsx/EditCategory";
 import Loginform from "./Components/login/Loginform";
+import AddSubCategory from "./Components/SubCategory/AddSubCategory";
 import SubCategory from "./Components/SubCategory/SubCategory";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -29,9 +30,9 @@ function App() {
       element: <SubCategory />,
     },
     {
-      path:"/subcategory/add",
-      
-    }
+      path: "/subcategory/add",
+      element: <AddSubCategory />,
+    },
   ]);
 
   return (

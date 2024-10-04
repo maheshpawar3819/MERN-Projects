@@ -24,7 +24,7 @@ const SubCategory = () => {
   return (
     <>
       <button className="bg-slate-500 p-1 rounded-md px-5">
-        <Link to={"/category/add"}>Add</Link>
+        <Link to={"/subcategory/add"}>Add</Link>
       </button>
       <table border="1" cellPadding="10" cellSpacing="0">
         <thead>
