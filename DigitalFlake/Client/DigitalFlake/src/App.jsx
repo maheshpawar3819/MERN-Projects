@@ -1,12 +1,23 @@
-import { useState } from "react";
+import Category from "./Components/Category.jsx/Category";
+import Loginform from "./Components/login/Loginform";
 import "./index.css";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const approuter = createBrowserRouter([
+    {
+      path: "/",
+      element: <Loginform />,
+    },
+    {
+      path: "/category",
+      element: <Category />,
+    },
+  ]);
 
   return (
     <>
-      <h1 className="bg-gray-500">hii</h1>
+      <RouterProvider router={approuter} />
     </>
   );
 }
