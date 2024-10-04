@@ -17,6 +17,21 @@ const Category = () => {
     }
   };
 
+  const deleteCategory = async (id) => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:8080/api/categories/categories/${id}`
+      );
+      console.log(response);
+      if (response.statusText === "OK") {
+        alert("delete product successfully");
+        getCategory();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     getCategory();
   }, []);
@@ -55,8 +70,15 @@ const Category = () => {
                   </td>
                   <td>{status}</td>
                   <td>
-                    <button>Edit</button>
-                    <button>Delete</button>
+                    <button className="p-1 bg-green-500 px-2 rounded-md text-white">
+                      <Link to={"/category/:id"}> Edit</Link>
+                    </button>
+                    <button
+                      className="p-1 bg-red-500 px-2 rounded-md text-white"
+                      onClick={() => deleteCategory(id)}
+                    >
+                      Delete
+                    </button>
                   </td>
                 </tr>
               );
