@@ -9,6 +9,7 @@ import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Product from "./Product/Product";
 import AddProduct from "./Product/AddProduct";
+import EditProduct from "./Product/EditProduct";
 
 function App() {
   const approuter = createBrowserRouter([
@@ -47,6 +48,10 @@ function App() {
     {
       path: "/product/add",
       element: <AddProduct />,
+    },
+    {
+      path: "/product/:id",
+      element: <EditProduct />,
     },
   ]);
 

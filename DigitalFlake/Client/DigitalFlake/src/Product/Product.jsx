@@ -59,7 +59,7 @@ const Product = () => {
                   <td>{ele?.category?.name}</td>
                   <td>
                     <button className="p-1 bg-green-500 px-2 rounded-md text-white">
-                      <Link to={`/category/${id}`}> Edit</Link>
+                      <Link to={`/product/${id}`}> Edit</Link>
                     </button>
                     <button
                       className="p-1 bg-red-500 px-2 rounded-md text-white"
