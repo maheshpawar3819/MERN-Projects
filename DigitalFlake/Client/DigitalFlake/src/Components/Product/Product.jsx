@@ -20,6 +20,23 @@ const Product = () => {
   useEffect(() => {
     getAllProducts();
   }, []);
+
+  //api call to  delete product
+
+  const deleteProduct = async (id) => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:8080/api/product/delete/${id}`
+      );
+      if (response.status >= 200) {
+        alert("product delete successfully");
+        getAllProducts();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div>
       <button className="bg-slate-500 p-1 rounded-md px-5">
@@ -63,7 +80,7 @@ const Product = () => {
                     </button>
                     <button
                       className="p-1 bg-red-500 px-2 rounded-md text-white"
-                      onClick={() => deleteCategory(id)}
+                      onClick={() => deleteProduct(id)}
                     >
                       Delete
                     </button>

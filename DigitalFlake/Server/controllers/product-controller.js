@@ -26,7 +26,7 @@ const getProducts = async (req, res, next) => {
 const createProduct = async (req, res, next) => {
   const { name, imageUrl, status, categoryId, subcategoryId } = req.body;
   try {
-    if (!name || !imageUrl || !status || !categoryId || !subcategoryId) {
+    if (!name || !imageUrl || !status || !subcategoryId || !categoryId) {
       return res.status(400).json({ message: "Please fill all fields" });
     }
 
@@ -50,7 +50,7 @@ const createProduct = async (req, res, next) => {
 //to update product
 const updateProduct = async (req, res, next) => {
   const { id } = req.params;
-  const { name, imageUrl, status, categoryId, subcategoryId } = req.body;
+  const { name, imageUrl, status, subcategoryId, categoryId } = req.body;
   try {
     const update = await prisma.product.update({
       where: { id: parseInt(id) },
