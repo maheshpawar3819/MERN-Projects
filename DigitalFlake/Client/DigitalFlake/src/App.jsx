@@ -7,6 +7,7 @@ import EditSubCategory from "./Components/SubCategory/EditSubCategory";
 import SubCategory from "./Components/SubCategory/SubCategory";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Product from "./Product/Product";
 
 function App() {
   const approuter = createBrowserRouter([
@@ -37,6 +38,10 @@ function App() {
     {
       path: "/subcategory/:id",
       element: <EditSubCategory />,
+    },
+    {
+      path: "/product",
+      element: <Product />,
     },
   ]);
 
