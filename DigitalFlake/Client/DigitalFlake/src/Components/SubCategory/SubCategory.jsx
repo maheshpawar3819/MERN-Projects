@@ -48,6 +48,7 @@ const SubCategory = () => {
             <th>Category Name</th>
             <th>Image</th>
             <th>Status</th>
+            <th>Category Name</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -69,6 +70,7 @@ const SubCategory = () => {
                     />
                   </td>
                   <td>{status}</td>
+                  <td>{ele?.category?.name}</td>
                   <td>
                     <button className="p-1 bg-green-500 px-2 rounded-md text-white">
                       <Link to={`/subcategory/${id}`}> Edit</Link>
