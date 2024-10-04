@@ -8,6 +8,7 @@ import SubCategory from "./Components/SubCategory/SubCategory";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Product from "./Product/Product";
+import AddProduct from "./Product/AddProduct";
 
 function App() {
   const approuter = createBrowserRouter([
@@ -42,6 +43,10 @@ function App() {
     {
       path: "/product",
       element: <Product />,
+    },
+    {
+      path: "/product/add",
+      element: <AddProduct />,
     },
   ]);
 

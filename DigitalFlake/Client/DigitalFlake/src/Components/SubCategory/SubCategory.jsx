@@ -45,7 +45,7 @@ const SubCategory = () => {
         <thead>
           <tr>
             <th>ID</th>
-            <th>Category Name</th>
+            <th>SubCategory Name</th>
             <th>Image</th>
             <th>Status</th>
             <th>Category Name</th>

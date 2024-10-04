@@ -2,7 +2,6 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-
 const Product = () => {
   const [data, setData] = useState([]);
   //api call
@@ -24,15 +23,17 @@ const Product = () => {
   return (
     <div>
       <button className="bg-slate-500 p-1 rounded-md px-5">
-        <Link to={"/category/add"}>Add</Link>
+        <Link to={"/product/add"}>Add</Link>
       </button>
       <table border="1" cellPadding="10" cellSpacing="0">
         <thead>
           <tr>
             <th>ID</th>
-            <th>Category Name</th>
+            <th>Product Name</th>
             <th>Image</th>
             <th>Status</th>
+            <th>SubCategory</th>
+            <th>Category</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -54,6 +55,8 @@ const Product = () => {
                     />
                   </td>
                   <td>{status}</td>
+                  <td>{ele?.subcategory?.name}</td>
+                  <td>{ele?.category?.name}</td>
                   <td>
                     <button className="p-1 bg-green-500 px-2 rounded-md text-white">
                       <Link to={`/category/${id}`}> Edit</Link>
