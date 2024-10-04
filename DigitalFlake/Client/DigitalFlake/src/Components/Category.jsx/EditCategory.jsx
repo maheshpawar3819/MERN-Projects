@@ -9,7 +9,7 @@ const EditCategory = () => {
     status: "",
   });
   const params = useParams();
-  const naivgate=useNavigate();
+  const naivgate = useNavigate();
 
   //api call
   const getCategory = async () => {
