@@ -1,3 +1,4 @@
+import AddCategory from "./Components/Category.jsx/AddCategory";
 import Category from "./Components/Category.jsx/Category";
 import Loginform from "./Components/login/Loginform";
 import "./index.css";
@@ -12,6 +13,10 @@ function App() {
     {
       path: "/category",
       element: <Category />,
+    },
+    {
+      path: "/category/add",
+      element: <AddCategory />,
     },
   ]);
 
