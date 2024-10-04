@@ -62,12 +62,12 @@ const createNewCategory = async (req, res, next) => {
 const updateCategory = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const { name, imageUrl, status, isDelete } = req.body;
+    const { name, imageUrl, status } = req.body;
 
     //update category
     const updateC = await prisma.category.update({
       where: { id: parseInt(id) },
-      data: { name, imageUrl, status, isDelete },
+      data: { name, imageUrl, status },
     });
 
     //send response
