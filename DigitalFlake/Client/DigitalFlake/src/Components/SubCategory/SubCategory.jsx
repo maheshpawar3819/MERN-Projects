@@ -17,6 +17,21 @@ const SubCategory = () => {
     }
   };
 
+  //to delete subcategory
+  const deleteSubcategory = async (id) => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:8080/api/subcategory/delete/${id}`
+      );
+      if (response.status >= 200) {
+        alert("delete subcategroy");
+        getSubCategories();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     getSubCategories();
   }, []);
@@ -56,11 +71,11 @@ const SubCategory = () => {
                   <td>{status}</td>
                   <td>
                     <button className="p-1 bg-green-500 px-2 rounded-md text-white">
-                      <Link to={`/category/${id}`}> Edit</Link>
+                      <Link to={`/subcategory/${id}`}> Edit</Link>
                     </button>
                     <button
                       className="p-1 bg-red-500 px-2 rounded-md text-white"
-                      onClick={() => deleteCategory(id)}
+                      onClick={() => deleteSubcategory(id)}
                     >
                       Delete
                     </button>
