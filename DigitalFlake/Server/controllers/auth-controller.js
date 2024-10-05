@@ -74,7 +74,7 @@ const loginUser = async (req, res, next) => {
 
     //check password and emil
     if (!isPasswordValid) {
-      res.status(401).json({ message: "Invalid Email and password" });
+      return res.status(401).json({ message: "Invalid Email and password" });
     }
 
     //genereate json token

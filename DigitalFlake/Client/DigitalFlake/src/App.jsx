@@ -7,9 +7,9 @@ import EditSubCategory from "./Components/SubCategory/EditSubCategory";
 import SubCategory from "./Components/SubCategory/SubCategory";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Product from "./Product/Product";
-import AddProduct from "./Product/AddProduct";
-import EditProduct from "./Product/EditProduct";
+import Product from "./Components/Product/Product";
+import AddProduct from "./Components/Product/AddProduct";
+import EditProduct from "./Components/Product/EditProduct";
 
 function App() {
   const approuter = createBrowserRouter([
