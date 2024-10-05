@@ -10,12 +10,17 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Product from "./Components/Product/Product";
 import AddProduct from "./Components/Product/AddProduct";
 import EditProduct from "./Components/Product/EditProduct";
+import Register from "./Components/login/Register";
 
 function App() {
   const approuter = createBrowserRouter([
     {
       path: "/",
       element: <Loginform />,
+    },
+    {
+      path:"/register",
+      element:<Register/>
     },
     {
       path: "/category",

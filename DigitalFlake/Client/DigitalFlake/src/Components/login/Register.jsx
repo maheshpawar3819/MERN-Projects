@@ -1,8 +1,10 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React from "react";
+import { useState } from "react";
 
-const Loginform = () => {
+const Register = () => {
   const [user, setUser] = useState({
+    name: "",
     email: "",
     password: "",
   });
@@ -16,24 +18,23 @@ const Loginform = () => {
     });
   };
 
-  //api call for authentication
-  const loginUser = async (e) => {
+  //register user api
+  const registerUser = async (e) => {
     e.preventDefault();
-    const { email, password } = user;
+    //destructure state variables
+    const { name, email, password } = user;
     try {
       const response = await axios.post(
-        `http://localhost:8080/api/auth/login`,
+        `http://localhost:8080/api/auth/register`,
         {
+          name,
           email,
           password,
         }
       );
-
       console.log(response);
       if (response.status >= 200) {
-        alert(response?.data?.message);
-      } else {
-        alert(response?.data?.message);
+        alert("Register successfully");
       }
     } catch (error) {
       console.log(error);
@@ -42,7 +43,15 @@ const Loginform = () => {
 
   return (
     <div>
-      <form action="" onSubmit={loginUser}>
+      <form action="" onSubmit={registerUser}>
+        <label htmlFor="emailid">User Name</label>
+        <input
+          type="text"
+          name="name"
+          placeholder="enter your name here"
+          value={user.name}
+          onChange={handleChange}
+        />
         <label htmlFor="emailid">Email-Id</label>
         <input
           type="email"
@@ -67,4 +76,4 @@ const Loginform = () => {
   );
 };
 
-export default Loginform;
+export default Register;
