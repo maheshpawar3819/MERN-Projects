@@ -1,11 +1,14 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { login } from "../../store/authSlice";
 
 const Loginform = () => {
   const [user, setUser] = useState({
     email: "",
     password: "",
   });
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     const name = e.target.name;
@@ -31,6 +34,8 @@ const Loginform = () => {
 
       console.log(response);
       if (response.status >= 200) {
+        localStorage.setItem("token", response?.data?.token);
+        dispatch(login());
         alert(response?.data?.message);
       } else {
         alert(response?.data?.message);
