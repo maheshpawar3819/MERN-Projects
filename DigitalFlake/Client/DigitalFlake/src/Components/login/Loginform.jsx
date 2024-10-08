@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { login } from "../../store/authSlice";
+import { useNavigate } from "react-router-dom";
 
 const Loginform = () => {
   const [user, setUser] = useState({
@@ -9,6 +10,7 @@ const Loginform = () => {
     password: "",
   });
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const name = e.target.name;
@@ -37,6 +39,7 @@ const Loginform = () => {
         localStorage.setItem("token", response?.data?.token);
         dispatch(login());
         alert(response?.data?.message);
+        navigate("/category");
       } else {
         alert(response?.data?.message);
       }

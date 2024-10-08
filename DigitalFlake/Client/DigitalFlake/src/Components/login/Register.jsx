@@ -1,6 +1,7 @@
 import axios from "axios";
 import React from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [user, setUser] = useState({
@@ -8,6 +9,7 @@ const Register = () => {
     email: "",
     password: "",
   });
+  const navigate=useNavigate();
 
   const handleChange = (e) => {
     const name = e.target.name;
@@ -34,6 +36,7 @@ const Register = () => {
       );
       console.log(response);
       if (response.status >= 200) {
+        navigate("/");
         alert("Register successfully");
       }
     } catch (error) {

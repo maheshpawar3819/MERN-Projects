@@ -11,6 +11,7 @@ import Product from "./Components/Product/Product";
 import AddProduct from "./Components/Product/AddProduct";
 import EditProduct from "./Components/Product/EditProduct";
 import Register from "./Components/login/Register";
+import Layout from "./Components/NavBar/Layout";
 
 function App() {
   const approuter = createBrowserRouter([
@@ -19,44 +20,50 @@ function App() {
       element: <Loginform />,
     },
     {
-      path:"/register",
-      element:<Register/>
+      path: "/register",
+      element: <Register />,
     },
     {
-      path: "/category",
-      element: <Category />,
-    },
-    {
-      path: "/category/add",
-      element: <AddCategory />,
-    },
-    {
-      path: "/category/:id",
-      element: <EditCategory />,
-    },
-    {
-      path: "/subcategory",
-      element: <SubCategory />,
-    },
-    {
-      path: "/subcategory/add",
-      element: <AddSubCategory />,
-    },
-    {
-      path: "/subcategory/:id",
-      element: <EditSubCategory />,
-    },
-    {
-      path: "/product",
-      element: <Product />,
-    },
-    {
-      path: "/product/add",
-      element: <AddProduct />,
-    },
-    {
-      path: "/product/:id",
-      element: <EditProduct />,
+      path: "/",
+      element: <Layout />, // Layout with Navbar
+      children: [
+        {
+          path: "category",
+          element: <Category />,
+        },
+        {
+          path: "category/add",
+          element: <AddCategory />,
+        },
+        {
+          path: "category/:id",
+          element: <EditCategory />,
+        },
+        {
+          path: "subcategory",
+          element: <SubCategory />,
+        },
+        {
+          path: "subcategory/add",
+          element: <AddSubCategory />,
+        },
+        {
+          path: "subcategory/:id",
+          element: <EditSubCategory />,
+        },
+        {
+          path: "product",
+          element: <Product />,
+        },
+        {
+          path: "product/add",
+          element: <AddProduct />,
+        },
+        {
+          path: "product/:id",
+          element: <EditProduct />,
+        },
+      ],
     },
   ]);
 
