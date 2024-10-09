@@ -63,9 +63,16 @@ const SubCategory = () => {
                         className="rounded-lg"
                       />
                     </td>
+                    {/* {
+                      console.log(ele?.products.length > 0)
+                    } */}
                     <td
                       className={`p-3 ${
-                        status === "active" ? "text-green-600" : "text-red-600"
+                        status === "active"
+                          ? "text-green-600"
+                          : ele?.products.length > 0
+                          ? "text-yellow-600" // If status is not active but has products
+                          : "text-red-600"
                       }`}
                     >
                       {status}
