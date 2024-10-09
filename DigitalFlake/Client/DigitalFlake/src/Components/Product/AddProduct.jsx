@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import { IoMdArrowRoundBack } from "react-icons/io";
 
 const AddProduct = () => {
   const [product, setProduct] = useState({
@@ -10,8 +11,8 @@ const AddProduct = () => {
     subcategoryId: "",
     categoryId: "",
   });
-  
-  const navigate=useNavigate();
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const name = e.target.name;
@@ -38,57 +39,97 @@ const AddProduct = () => {
 
       if (response.status >= 200) {
         alert("product create successfully");
-        navigate("/product")
+        navigate("/product");
       }
     } catch (error) {
       console.log(error);
     }
   };
   return (
-    <div>
-      <form action="" onSubmit={addNewProduct}>
-        <label htmlFor="newSubcategory">Category name</label>
-        <input
-          type="text"
-          name="name"
-          placeholder="enter Product name"
-          value={product.name}
-          onChange={handleChange}
-        />
-        <label htmlFor="imgage">Peste imageUrl</label>
-        <input
-          type="text"
-          name="imageUrl"
-          placeholder="put your image url"
-          value={product.imageUrl}
-          onChange={handleChange}
-        />
-        <label htmlFor="status">Status</label>
-        <input
-          type="text"
-          name="status"
-          placeholder="give status"
-          value={product.status}
-          onChange={handleChange}
-        />
-        <label htmlFor="subcategoryId">SubCategoryId</label>
-        <input
-          type="text"
-          name="subcategoryId"
-          placeholder="Enter subcategoryId"
-          value={product.subcategoryId}
-          onChange={handleChange}
-        />
-        <label htmlFor="categoryId">CategoryId</label>
-        <input
-          type="text"
-          name="categoryId"
-          placeholder="Enter categoryId"
-          value={product.categoryId}
-          onChange={handleChange}
-        />
-        <button className="bg-green-600 p-1 rounded-md">Add Category</button>
-      </form>
+    <div className="ml-72 mt-20 p-4 shadow-md rounded-md m-2 h-[85vh]">
+      <div className="flex items-center">
+        <Link to={"/product"}>
+          <IoMdArrowRoundBack className="size-8" />
+        </Link>
+        <p className="text-2xl ml-5 font-semibold">Add Product</p>
+      </div>
+      <div className="mt-2">
+        <form action="" onSubmit={addNewProduct}>
+          <label
+            htmlFor="newSubcategory"
+            className="text-xl font-semibold text-gray-700 mb-2"
+          >
+            Product Name
+          </label>
+          <input
+            type="text"
+            name="name"
+            placeholder="enter Product name"
+            value={product.name}
+            onChange={handleChange}
+            className="w-full px-4 mt-3 mb-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:border-blue-500 transition duration-300 ease-in-out"
+          />
+          <label
+            htmlFor="imgage"
+            className="text-xl font-semibold text-gray-700 mb-2"
+          >
+            Peste imageUrl
+          </label>
+          <input
+            type="text"
+            name="imageUrl"
+            placeholder="put your image url"
+            value={product.imageUrl}
+            onChange={handleChange}
+            className="w-full px-4 mt-3 mb-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:border-blue-500 transition duration-300 ease-in-out"
+          />
+          <label
+            htmlFor="status"
+            className="text-xl font-semibold text-gray-700 mb-2"
+          >
+            Status
+          </label>
+          <input
+            type="text"
+            name="status"
+            placeholder="give status"
+            value={product.status}
+            onChange={handleChange}
+            className="w-full px-4 mt-3 mb-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:border-blue-500 transition duration-300 ease-in-out"
+          />
+          <label
+            htmlFor="subcategoryId"
+            className="text-xl font-semibold text-gray-700 mb-2"
+          >
+            SubCategoryId
+          </label>
+          <input
+            type="text"
+            name="subcategoryId"
+            placeholder="Enter subcategoryId"
+            value={product.subcategoryId}
+            onChange={handleChange}
+            className="w-full px-4 mt-3 mb-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:border-blue-500 transition duration-300 ease-in-out"
+          />
+          <label
+            htmlFor="categoryId"
+            className="text-xl font-semibold text-gray-700 mb-2"
+          >
+            CategoryId
+          </label>
+          <input
+            type="text"
+            name="categoryId"
+            placeholder="Enter categoryId"
+            value={product.categoryId}
+            onChange={handleChange}
+            className="w-full px-4 mt-3 mb-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:border-blue-500 transition duration-300 ease-in-out"
+          />
+          <button className="bg-[#662671] hover:bg-[#823c8f] text-white  p-2 rounded-md">
+            Add Product
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
