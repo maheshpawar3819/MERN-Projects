@@ -72,7 +72,7 @@ const EditCategory = () => {
         <Link to={"/category"}>
           <IoMdArrowRoundBack className="size-8" />
         </Link>
-        <p className="text-2xl ml-5 font-semibold">Add Catogory</p>
+        <p className="text-2xl ml-5 font-semibold">Edit Catogory</p>
       </div>
       <div>
         <form action="" onSubmit={updateCategory}>
