@@ -1,32 +1,17 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import useGetCategory from "../Hooks/Category/useGetCategory";
 
 const Category = () => {
+  //custom hook contains combine logic of getting categories and deleteCategories
+  const { deleteCategory } = useGetCategory();
+
   //get data from redux store
   const getdata = useSelector((store) => {
     return store?.category?.category;
   });
-  console.log(getdata);
-  //custom hook
-  useGetCategory();
-
-  const deleteCategory = async (id) => {
-    try {
-      const response = await axios.delete(
-        `http://localhost:8080/api/categories/categories/${id}`
-      );
-      console.log(response);
-      if (response.statusText === "OK") {
-        alert("Category deleted successfully");
-        getCategory();
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   return (
     <div className="ml-72 mt-20 p-4">

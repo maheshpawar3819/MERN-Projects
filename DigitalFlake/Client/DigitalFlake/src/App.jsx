@@ -1,6 +1,6 @@
-import AddCategory from "./Components/Category.jsx/AddCategory";
-import Category from "./Components/Category.jsx/Category";
-import EditCategory from "./Components/Category.jsx/EditCategory";
+import AddCategory from "./Components/Category/AddCategory";
+import Category from "./Components/Category/Category";
+import EditCategory from "./Components/Category/EditCategory";
 import Loginform from "./Components/login/Loginform";
 import AddSubCategory from "./Components/SubCategory/AddSubCategory";
 import EditSubCategory from "./Components/SubCategory/EditSubCategory";
@@ -67,9 +67,9 @@ function App() {
       ],
     },
     {
-      path:"/sidebar",
-      element:<Sidebar/>
-    }
+      path: "/sidebar",
+      element: <Sidebar />,
+    },
   ]);
 
   return (
