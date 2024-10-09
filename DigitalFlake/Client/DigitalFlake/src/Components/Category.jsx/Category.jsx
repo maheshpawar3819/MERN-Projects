@@ -1,22 +1,17 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import useGetCategory from "../Hooks/Category/useGetCategory";
 
 const Category = () => {
-  const [data, setData] = useState([]);
-  const getCategory = async () => {
-    try {
-      const response = await axios.get(
-        "http://localhost:8080/api/categories/categories"
-      );
-      console.log(response);
-      setData(response?.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
+  //get data from redux store
+  const getdata = useSelector((store) => {
+    return store?.category?.category;
+  });
+  console.log(getdata);
+  //custom hook
+  useGetCategory();
 
   const deleteCategory = async (id) => {
     try {
@@ -32,10 +27,6 @@ const Category = () => {
       console.log(error);
     }
   };
-
-  useEffect(() => {
-    getCategory();
-  }, []);
 
   return (
     <div className="ml-72 mt-20 p-4">
@@ -62,8 +53,8 @@ const Category = () => {
           </tr>
         </thead>
         <tbody>
-          {data.length > 0 ? (
-            data.map((ele) => {
+          {getdata.length > 0 ? (
+            getdata.map((ele) => {
               const { id, imageUrl, name, status } = ele;
               return (
                 <tr key={id} className="border-b hover:bg-gray-100">

@@ -1,22 +1,15 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import useSubCategories from "../Hooks/Subcategory/useSubCategories";
+import { useSelector } from "react-redux";
 
 const SubCategory = () => {
-  const [data, setData] = useState([]);
-  //apicall
-  const getSubCategories = async () => {
-    try {
-      const response = await axios.get(
-        `http://localhost:8080/api/subcategory/subcategories`
-      );
-      console.log(response?.data?.subCategoreis);
-      setData(response?.data?.subCategoreis);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const getSubCategories = useSelector((store) => {
+    return store?.category?.subCategory;
+  });
+  //custom hook to get subcategories
+  useSubCategories();
 
   //to delete subcategory
   const deleteSubcategory = async (id) => {
@@ -32,10 +25,6 @@ const SubCategory = () => {
       console.log(error);
     }
   };
-
-  useEffect(() => {
-    getSubCategories();
-  }, []);
 
   return (
     <>
@@ -68,8 +57,8 @@ const SubCategory = () => {
             </tr>
           </thead>
           <tbody>
-            {data.length > 0 ? (
-              data.map((ele) => {
+            {getSubCategories.length > 0 ? (
+              getSubCategories.map((ele) => {
                 const { id, imageUrl, name, status } = ele;
                 return (
                   <tr key={id} className="border-b hover:bg-gray-100">

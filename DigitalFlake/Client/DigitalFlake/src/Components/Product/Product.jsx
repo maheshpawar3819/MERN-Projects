@@ -2,26 +2,15 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import useGetProducts from "../Hooks/Product/useGetProducts";
+import { useSelector } from "react-redux";
 
 const Product = () => {
-  const [data, setData] = useState([]);
-  //api call
-  const getAllProducts = async () => {
-    try {
-      const response = await axios.get(
-        `http://localhost:8080/api/product/products`
-      );
-      console.log(response?.data);
-      setData(response?.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-
-  useEffect(() => {
-    getAllProducts();
-  }, []);
+  //get products form redux storage
+  const getProducts = useSelector((store) => {
+    return store?.category?.product;
+  });
+  //custom hook to get products
+  useGetProducts();
 
   //api call to  delete product
 
@@ -70,8 +59,8 @@ const Product = () => {
           </tr>
         </thead>
         <tbody>
-          {data.length > 0 ? (
-            data.map((ele) => {
+          {getProducts.length > 0 ? (
+            getProducts.map((ele) => {
               const { id, imageUrl, name, status } = ele;
               return (
                 <tr key={id} className="border-b hover:bg-gray-100">
