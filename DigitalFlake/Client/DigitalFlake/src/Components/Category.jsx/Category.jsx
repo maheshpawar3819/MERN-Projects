@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { LiaEditSolid } from "react-icons/lia";
+import useGetCategory from "../Hooks/Category/useGetCategory";
 
 const Category = () => {
   const [data, setData] = useState([]);
@@ -16,6 +16,7 @@ const Category = () => {
       console.log(error);
     }
   };
+
 
   const deleteCategory = async (id) => {
     try {

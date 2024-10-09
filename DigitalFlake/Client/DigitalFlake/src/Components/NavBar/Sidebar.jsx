@@ -3,7 +3,7 @@ import { BiCategoryAlt } from "react-icons/bi";
 import { AiOutlineProduct } from "react-icons/ai";
 import { TbCategoryMinus } from "react-icons/tb";
 import { FaPlay } from "react-icons/fa";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {
   return (
