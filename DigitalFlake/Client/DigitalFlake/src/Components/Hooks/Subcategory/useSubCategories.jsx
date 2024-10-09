@@ -19,6 +19,22 @@ const useSubCategories = () => {
       console.error(`something wrong not able to fetch data`, error);
     }
   };
+
+  const deleteSubcategory = async (id) => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:8080/api/subcategory/delete/${id}`
+      );
+      if (response.status >= 200) {
+        alert("delete subcategroy");
+        getSubCategory();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  return { getSubCategory, deleteSubcategory };
 };
 
 export default useSubCategories;

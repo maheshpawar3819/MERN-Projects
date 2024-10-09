@@ -1,30 +1,16 @@
-import axios from "axios";
 import React from "react";
 import { Link } from "react-router-dom";
 import useSubCategories from "../Hooks/Subcategory/useSubCategories";
 import { useSelector } from "react-redux";
 
 const SubCategory = () => {
+  //custom hook contains combine logic of getting categories and deleteSubCategories
+  const { deleteSubcategory } = useSubCategories();
+
   const getSubCategories = useSelector((store) => {
     return store?.category?.subCategory;
   });
   //custom hook to get subcategories
-  useSubCategories();
-
-  //to delete subcategory
-  const deleteSubcategory = async (id) => {
-    try {
-      const response = await axios.delete(
-        `http://localhost:8080/api/subcategory/delete/${id}`
-      );
-      if (response.status >= 200) {
-        alert("delete subcategroy");
-        getSubCategories();
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   return (
     <>
