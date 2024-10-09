@@ -12,6 +12,7 @@ import AddProduct from "./Components/Product/AddProduct";
 import EditProduct from "./Components/Product/EditProduct";
 import Register from "./Components/login/Register";
 import Layout from "./Components/NavBar/Layout";
+import Sidebar from "./Components/NavBar/Sidebar";
 
 function App() {
   const approuter = createBrowserRouter([
@@ -65,6 +66,10 @@ function App() {
         },
       ],
     },
+    {
+      path:"/sidebar",
+      element:<Sidebar/>
+    }
   ]);
 
   return (
