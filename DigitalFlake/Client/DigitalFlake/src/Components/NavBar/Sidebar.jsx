@@ -6,12 +6,12 @@ import { FaPlay } from "react-icons/fa";
 
 const Sidebar = () => {
   return (
-    <div className="h-screen bg-gray-100 w-72 fixed p-4">
-      <ul className="space-y-4 mt-2">
+    <div className="h-screen bg-gray-100 w-72 fixed top-0 left-0 p-4">
+      <ul className="space-y-4 mt-20">
         <li className="flex items-center justify-between p-2 hover:bg-gray-200 rounded-lg cursor-pointer">
           <div className="flex items-center space-x-2">
             <BiCategoryAlt className="text-xl" />
-            <span className="text-xl">Cateogory</span>
+            <span className="text-xl">Category</span>
           </div>
           <FaPlay className="text-sm" />
         </li>
@@ -33,7 +33,6 @@ const Sidebar = () => {
         </li>
       </ul>
     </div>
-  
   );
 };
 
