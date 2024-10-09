@@ -18,6 +18,22 @@ const useGetProducts = () => {
       console.error(`something worng not able to fetch data`, error);
     }
   };
+
+  const deleteProduct = async (id) => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:8080/api/product/delete/${id}`
+      );
+      if (response.status >= 200) {
+        alert("product delete successfully");
+        getProducts();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  return { getProducts, deleteProduct };
 };
 
 export default useGetProducts;

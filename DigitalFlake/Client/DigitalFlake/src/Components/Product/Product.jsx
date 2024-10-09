@@ -5,28 +5,12 @@ import useGetProducts from "../Hooks/Product/useGetProducts";
 import { useSelector } from "react-redux";
 
 const Product = () => {
+    //custom hook contains combine logic of getting products and productsdelete
+  const { deleteProduct } = useGetProducts();
   //get products form redux storage
   const getProducts = useSelector((store) => {
     return store?.category?.product;
   });
-  //custom hook to get products
-  useGetProducts();
-
-  //api call to  delete product
-
-  const deleteProduct = async (id) => {
-    try {
-      const response = await axios.delete(
-        `http://localhost:8080/api/product/delete/${id}`
-      );
-      if (response.status >= 200) {
-        alert("product delete successfully");
-        getAllProducts();
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   return (
     <div className="ml-72 mt-20 p-4">
