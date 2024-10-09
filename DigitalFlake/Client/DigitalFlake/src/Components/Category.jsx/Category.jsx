@@ -38,7 +38,7 @@ const Category = () => {
   return (
     <div className="ml-72 mt-20 p-4">
       <div className="flex justify-between items-center mb-4">
-        <button className="bg-purple-700 text-white py-2 px-5 rounded-md">
+        <button className="bg-[#662671] hover:bg-[#823c8f] text-white py-2 px-5 rounded-md">
           <Link to={"/category/add"}>Add New</Link>
         </button>
         <p className="text-3xl font-bold font-mono">Category</p>
