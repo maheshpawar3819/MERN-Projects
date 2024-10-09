@@ -4,13 +4,15 @@ import useSubCategories from "../Hooks/Subcategory/useSubCategories";
 import { useSelector } from "react-redux";
 
 const SubCategory = () => {
-  //custom hook contains combine logic of getting categories and deleteSubCategories
+  //custom hook contains combine logic of getting subCategories and deleteSubCategories
   const { deleteSubcategory } = useSubCategories();
 
   const getSubCategories = useSelector((store) => {
     return store?.category?.subCategory;
   });
-  //custom hook to get subcategories
+
+  //to count all subcategories
+  const count = getSubCategories.length;
 
   return (
     <>
@@ -19,7 +21,9 @@ const SubCategory = () => {
           <button className="bg-[#662671] hover:bg-[#823c8f] text-white py-2 px-5 rounded-md">
             <Link to={"/subcategory/add"}>Add New</Link>
           </button>
-          <p className="text-3xl font-bold font-mono">SubCategory</p>
+          <p className="text-3xl font-bold font-mono">
+            SubCategory <span className="text-purple-900">{count}</span>
+          </p>
           <input
             type="text"
             placeholder="Search category..."

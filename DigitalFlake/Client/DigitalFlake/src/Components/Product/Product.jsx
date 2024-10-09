@@ -5,12 +5,15 @@ import useGetProducts from "../Hooks/Product/useGetProducts";
 import { useSelector } from "react-redux";
 
 const Product = () => {
-    //custom hook contains combine logic of getting products and productsdelete
+  //custom hook contains combine logic of getting products and productsdelete
   const { deleteProduct } = useGetProducts();
   //get products form redux storage
   const getProducts = useSelector((store) => {
     return store?.category?.product;
   });
+
+  //to count of all products
+  const count = getProducts.length;
 
   return (
     <div className="ml-72 mt-20 p-4">
@@ -18,7 +21,9 @@ const Product = () => {
         <button className="bg-[#662671] hover:bg-[#823c8f] text-white py-2 px-5 rounded-md">
           <Link to={"/product/add"}>Add New</Link>
         </button>
-        <p className="text-3xl font-bold font-mono">Product</p>
+        <p className="text-3xl font-bold font-mono">
+          Product <span className="text-purple-900">{count}</span>
+        </p>
         <input
           type="text"
           placeholder="Search category..."
