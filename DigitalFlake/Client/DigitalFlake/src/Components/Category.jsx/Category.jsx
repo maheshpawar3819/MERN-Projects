@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { LiaEditSolid } from "react-icons/lia";
 
 const Category = () => {
   const [data, setData] = useState([]);
@@ -78,14 +79,14 @@ const Category = () => {
                   </td>
                   <td
                     className={`p-3 ${
-                      status === "Active" ? "text-green-600" : "text-red-600"
+                      status === "active" ? "text-green-600" : "text-red-600"
                     }`}
                   >
                     {status}
                   </td>
-                  <td className="p-3 flex space-x-2">
+                  <td className="p-3 flex space-x-2 mt-2">
                     <Link to={`/category/${id}`}>
-                      <button className="p-2 bg-green-500 text-white rounded-md hover:bg-green-600">
+                      <button className="p-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
                         Edit
                       </button>
                     </Link>
