@@ -13,6 +13,7 @@ import EditProduct from "./Components/Product/EditProduct";
 import Register from "./Components/login/Register";
 import Layout from "./Components/NavBar/Layout";
 import Sidebar from "./Components/NavBar/Sidebar";
+import PrivateRoute from "./PrivateRoute";
 
 function App() {
   const approuter = createBrowserRouter([
@@ -30,39 +31,75 @@ function App() {
       children: [
         {
           path: "category",
-          element: <Category />,
+          element: (
+            <PrivateRoute>
+              <Category />
+            </PrivateRoute>
+          ),
         },
         {
           path: "category/add",
-          element: <AddCategory />,
+          element: (
+            <PrivateRoute>
+              <AddCategory />
+            </PrivateRoute>
+          ),
         },
         {
           path: "category/:id",
-          element: <EditCategory />,
+          element: (
+            <PrivateRoute>
+              <EditCategory />
+            </PrivateRoute>
+          ),
         },
         {
           path: "subcategory",
-          element: <SubCategory />,
+          element: (
+            <PrivateRoute>
+              <SubCategory />
+            </PrivateRoute>
+          ),
         },
         {
           path: "subcategory/add",
-          element: <AddSubCategory />,
+          element: (
+            <PrivateRoute>
+              <AddSubCategory />
+            </PrivateRoute>
+          ),
         },
         {
           path: "subcategory/:id",
-          element: <EditSubCategory />,
+          element: (
+            <PrivateRoute>
+              <EditSubCategory />
+            </PrivateRoute>
+          ),
         },
         {
           path: "product",
-          element: <Product />,
+          element: (
+            <PrivateRoute>
+              <Product />
+            </PrivateRoute>
+          ),
         },
         {
           path: "product/add",
-          element: <AddProduct />,
+          element: (
+            <PrivateRoute>
+              <AddProduct />
+            </PrivateRoute>
+          ),
         },
         {
           path: "product/:id",
-          element: <EditProduct />,
+          element: (
+            <PrivateRoute>
+              <EditProduct />``
+            </PrivateRoute>
+          ),
         },
       ],
     },

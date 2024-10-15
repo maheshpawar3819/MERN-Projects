@@ -37,7 +37,7 @@ const Loginform = () => {
       console.log(response);
       if (response.status >= 200) {
         localStorage.setItem("token", response?.data?.token);
-        dispatch(login());
+        dispatch(login(response.data.user));
         alert(response?.data?.message);
         navigate("/category");
       } else {
@@ -58,6 +58,7 @@ const Loginform = () => {
           name="email"
           value={user.email}
           onChange={handleChange}
+          required
         />
         <label htmlFor="password">Password</label>
         <input
@@ -66,6 +67,7 @@ const Loginform = () => {
           name="password"
           value={user.password}
           onChange={handleChange}
+          required
         />
         <button className="bg-purple-500 p-1 px-2 text-white rounded-md">
           Log In
