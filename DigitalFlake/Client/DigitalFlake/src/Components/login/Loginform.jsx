@@ -37,7 +37,8 @@ const Loginform = () => {
       console.log(response);
       if (response.status >= 200) {
         localStorage.setItem("token", response?.data?.token);
-        dispatch(login(response.data.user));
+        console.log(response?.data?.user);
+        dispatch(login(response?.data?.user));
         alert(response?.data?.message);
         navigate("/category");
       } else {
