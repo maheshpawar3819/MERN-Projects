@@ -2,16 +2,19 @@ import React, { useState } from "react";
 import { IoMdLogOut } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../store/authSlice";
+import { useNavigate } from "react-router-dom";
 
 const NavBar = () => {
   const [isHovered, setIsHovered] = useState(false);
   const user = useSelector((store) => store?.auth?.user);
   const isLoggedIn = useSelector((store) => store?.auth?.isLoggedIn);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   //logout handle
   const handleLogout = () => {
     dispatch(logout());
+    navigate("/");
   };
 
   return (
@@ -28,7 +31,7 @@ const NavBar = () => {
             className="bg-white text-[#662671] p-2 rounded-full hover:bg-red-700  hover:text-white transition duration-300 flex items-center"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
-            onClick={() => handleLogout}
+            onClick={handleLogout}
           >
             <IoMdLogOut className="text-xl" />
           </button>
