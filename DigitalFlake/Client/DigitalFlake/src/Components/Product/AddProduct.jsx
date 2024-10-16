@@ -71,7 +71,7 @@ const AddProduct = () => {
           <input
             type="text"
             name="name"
-            placeholder="enter Product name"
+            placeholder="Enter product name (e.g., Product Name)"
             value={product.name}
             onChange={handleChange}
             className="w-full px-4 mt-3 mb-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:border-blue-500 transition duration-300 ease-in-out"
@@ -85,7 +85,7 @@ const AddProduct = () => {
           <input
             type="text"
             name="imageUrl"
-            placeholder="put your image url"
+            placeholder="Enter a valid image URL (e.g., https://example.com/image.jpg)"
             value={product.imageUrl}
             onChange={handleChange}
             className="w-full px-4 mt-3 mb-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:border-blue-500 transition duration-300 ease-in-out"
@@ -99,7 +99,7 @@ const AddProduct = () => {
           <input
             type="text"
             name="status"
-            placeholder="give status"
+            placeholder="Enter status (e.g., Active, Inactive)"
             value={product.status}
             onChange={handleChange}
             className="w-full px-4 mt-3 mb-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:border-blue-500 transition duration-300 ease-in-out"
@@ -113,7 +113,7 @@ const AddProduct = () => {
           <input
             type="text"
             name="subcategoryId"
-            placeholder="Enter subcategoryId"
+            placeholder="Enter Subcategory ID (e.g., 1, 2, 3)"
             value={product.subcategoryId}
             onChange={handleChange}
             className="w-full px-4 mt-3 mb-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:border-blue-500 transition duration-300 ease-in-out"
@@ -127,7 +127,7 @@ const AddProduct = () => {
           <input
             type="text"
             name="categoryId"
-            placeholder="Enter categoryId"
+            placeholder="Enter Category ID (e.g., 1, 2, 3)"
             value={product.categoryId}
             onChange={handleChange}
             className="w-full px-4 mt-3 mb-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:border-blue-500 transition duration-300 ease-in-out"

@@ -68,7 +68,7 @@ const AddCategory = () => {
           <input
             type="text"
             name="name"
-            placeholder="enter category name"
+            placeholder="Enter a unique category name (e.g., Electronics)"
             value={category.name}
             onChange={handleChange}
             className="w-full px-4 mt-3 mb-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:border-blue-500 transition duration-300 ease-in-out"
@@ -82,7 +82,7 @@ const AddCategory = () => {
           <input
             type="text"
             name="imageUrl"
-            placeholder="put your image url"
+            placeholder="Paste a valid image URL (e.g., https://example.com/image.jpg)"
             value={category.imageUrl}
             onChange={handleChange}
             className="w-full px-4 mt-3 mb-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:border-blue-500 transition duration-300 ease-in-out"
@@ -96,7 +96,7 @@ const AddCategory = () => {
           <input
             type="text"
             name="status"
-            placeholder="give status"
+            placeholder="Enter status (e.g., Active, Inactive)"
             value={category.status}
             onChange={handleChange}
             className="w-full px-4 py-2 mt-3 mb-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:border-blue-500 transition duration-300 ease-in-out"

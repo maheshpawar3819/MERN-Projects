@@ -63,11 +63,13 @@ const EditCategory = () => {
         naivgate("/category");
       }
     } catch (error) {
-      if( error.response &&
+      if (
+        error.response &&
         error.response.data &&
-        error.response.data.message){
-          toast.error(error.response.data.message)
-        }
+        error.response.data.message
+      ) {
+        toast.error(error.response.data.message);
+      }
     }
   };
 
@@ -90,7 +92,7 @@ const EditCategory = () => {
           <input
             type="text"
             name="name"
-            placeholder="enter category name"
+            placeholder="Enter the category name (e.g., Electronics)"
             value={data.name}
             onChange={handleChange}
             className="w-full px-4 mt-3 mb-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:border-blue-500 transition duration-300 ease-in-out"
@@ -104,7 +106,7 @@ const EditCategory = () => {
           <input
             type="text"
             name="imageUrl"
-            placeholder="put your image url"
+            placeholder="Paste the URL of the category image (e.g., https://example.com/image.jpg)"
             value={data.imageUrl}
             onChange={handleChange}
             className="w-full px-4 mt-3 mb-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:border-blue-500 transition duration-300 ease-in-out"
@@ -118,7 +120,7 @@ const EditCategory = () => {
           <input
             type="text"
             name="status"
-            placeholder="give status"
+            placeholder="Set the status (e.g., Active or Inactive)"
             value={data.status}
             onChange={handleChange}
             className="w-full px-4 mt-3 mb-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:border-blue-500 transition duration-300 ease-in-out"

@@ -67,7 +67,7 @@ const AddSubCategory = () => {
           <input
             type="text"
             name="name"
-            placeholder="enter SubCategory name"
+            placeholder="Enter SubCategory name Ex-Company Name"
             value={subCategory.name}
             onChange={handleChange}
             className="w-full px-4 mt-3 mb-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:border-blue-500 transition duration-300 ease-in-out"
@@ -81,7 +81,7 @@ const AddSubCategory = () => {
           <input
             type="text"
             name="imageUrl"
-            placeholder="put your image url"
+            placeholder="Paste the URL of the SubCategory image (e.g., https://example.com/image.jpg)"
             value={subCategory.imageUrl}
             onChange={handleChange}
             className="w-full px-4 mt-3 mb-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:border-blue-500 transition duration-300 ease-in-out"
@@ -95,7 +95,7 @@ const AddSubCategory = () => {
           <input
             type="text"
             name="status"
-            placeholder="give status"
+            placeholder="Enter status (e.g., Active or Inactive)"
             value={subCategory.status}
             onChange={handleChange}
             className="w-full px-4 mt-3 mb-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:border-blue-500 transition duration-300 ease-in-out"
@@ -109,7 +109,7 @@ const AddSubCategory = () => {
           <input
             type="text"
             name="categoryId"
-            placeholder="Enter categoryId"
+            placeholder="Enter the parent Category ID (e.g., 1)"
             value={subCategory.categoryId}
             onChange={handleChange}
             className="w-full px-4 mt-3 mb-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:border-blue-500 transition duration-300 ease-in-out"
