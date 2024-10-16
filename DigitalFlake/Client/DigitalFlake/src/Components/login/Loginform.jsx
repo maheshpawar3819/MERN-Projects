@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import { login } from "../../store/authSlice";
 import { Link, useNavigate } from "react-router-dom";
 
-
 const Loginform = () => {
   const [user, setUser] = useState({
     email: "",
@@ -100,9 +99,12 @@ const Loginform = () => {
             />
           </div>
           <p className="text-center mb-4 cursor-pointer">
-            <Link to={"/register"}>New User? Register Now</Link>
+            <Link to={"/register"}>
+              New User?{" "}
+              <span className="hover:text-blue-500">Register Now</span>
+            </Link>
           </p>
-          <button className="w-full bg-[#662671] text-white p-2 rounded-md shadow-lg hover:bg-purple-600 transition-colors">
+          <button className="w-full bg-[#662671] text-white p-2 rounded-md shadow-lg hover:bg-[#7e308c] transition-colors">
             Log In
           </button>
         </form>
