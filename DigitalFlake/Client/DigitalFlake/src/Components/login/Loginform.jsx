@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { login } from "../../store/authSlice";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Loginform = () => {
   const [user, setUser] = useState({
@@ -39,7 +40,7 @@ const Loginform = () => {
         localStorage.setItem("token", response?.data?.token);
         console.log(response?.data?.user);
         dispatch(login(response?.data?.user));
-        alert(response?.data?.message);
+        toast.success(response?.data?.message);
         navigate("/category");
       } else {
         alert(response?.data?.message);
