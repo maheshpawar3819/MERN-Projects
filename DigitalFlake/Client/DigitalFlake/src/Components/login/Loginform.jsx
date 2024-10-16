@@ -42,11 +42,13 @@ const Loginform = () => {
         dispatch(login(response?.data?.user));
         toast.success(response?.data?.message);
         navigate("/category");
-      } else {
-        alert(response?.data?.message);
-      }
+      } 
     } catch (error) {
-      console.log(error);
+      if(error.response && error.response.data && error.response.data.message){
+        toast.error(error.response.data.message)
+      }else{
+        toast.error("Faild to login");
+      }
     }
   };
 
