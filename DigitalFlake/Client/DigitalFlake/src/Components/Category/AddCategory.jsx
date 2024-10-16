@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { IoMdArrowRoundBack } from "react-icons/io";
+import { toast } from "react-toastify";
 
 const AddCategory = () => {
   const [category, setCategory] = useState({
@@ -35,11 +36,17 @@ const AddCategory = () => {
       );
       console.log(response);
       if (response.status >= 200) {
-        alert("success");
+        toast.success(response?.data?.message);
         navigate("/category");
       }
     } catch (error) {
-      console.log(error);
+      if (
+        error.response &&
+        error.response.data &&
+        error.response.data.message
+      ) {
+        toast.error(error.response.data.message);
+      }
     }
   };
   return (

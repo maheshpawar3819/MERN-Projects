@@ -52,7 +52,7 @@ const createNewCategory = async (req, res, next) => {
     //sending response
     res
       .status(200)
-      .json({ createCategory, message: "category added successfully" });
+      .json({ createCategory, message: "Category added successfully" });
   } catch (error) {
     next();
   }
@@ -71,7 +71,7 @@ const updateCategory = async (req, res, next) => {
     });
 
     //send response
-    res.status(200).json({ updateC, message: "successfully update category" });
+    res.status(200).json({ updateC, message: "Successfully update category" });
   } catch (error) {
     next(error);
   }
@@ -85,7 +85,7 @@ const deleteCategory = async (req, res, next) => {
       where: { id: parseInt(id) },
     });
 
-    res.status(200).json({ message: "successfully delete category" });
+    res.status(200).json({ message: "Successfully delete category" });
   } catch (error) {
     next(error);
   }

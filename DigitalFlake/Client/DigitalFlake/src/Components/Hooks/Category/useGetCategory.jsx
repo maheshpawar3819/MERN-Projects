@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getCategories } from "../../../store/categorySlice";
+import { toast } from "react-toastify";
 
 const useGetCategory = () => {
   useEffect(() => {
@@ -27,7 +28,7 @@ const useGetCategory = () => {
       );
       console.log(response);
       if (response.statusText === "OK") {
-        alert("Category deleted successfully");
+        toast.success(response?.data?.message);
         getCategory();
       }
     } catch (error) {

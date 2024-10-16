@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { IoMdArrowRoundBack } from "react-icons/io";
+import { toast } from "react-toastify";
 
 const EditCategory = () => {
   const [data, setData] = useState({
@@ -58,11 +59,15 @@ const EditCategory = () => {
       );
       console.log(response);
       if (response.statusText === "OK") {
-        alert(response?.data?.message);
+        toast.success(response?.data?.message);
         naivgate("/category");
       }
     } catch (error) {
-      console.log(error);
+      if( error.response &&
+        error.response.data &&
+        error.response.data.message){
+          toast.error(error.response.data.message)
+        }
     }
   };
 
