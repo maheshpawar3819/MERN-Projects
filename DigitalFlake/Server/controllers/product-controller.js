@@ -41,7 +41,7 @@ const createProduct = async (req, res, next) => {
     });
 
     //sending response
-    res.status(200).json({ message: "successfully create product", create });
+    res.status(200).json({ message: "Successfully create product", create });
   } catch (error) {
     next(error);
   }
@@ -64,11 +64,11 @@ const updateProduct = async (req, res, next) => {
     });
 
     if (!update) {
-      res.status(401).json({ message: "something wrong product not updated" });
+      res.status(401).json({ message: "Something wrong product not updated" });
     }
 
     //send response
-    res.status(200).json({ message: "product updated successfully", update });
+    res.status(200).json({ message: "Product updated successfully", update });
   } catch (error) {
     next(error);
   }

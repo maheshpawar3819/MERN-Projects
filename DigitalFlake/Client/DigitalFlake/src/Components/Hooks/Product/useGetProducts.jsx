@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getProduct } from "../../../store/categorySlice";
+import { toast } from "react-toastify";
 
 const useGetProducts = () => {
   useEffect(() => {
@@ -25,7 +26,7 @@ const useGetProducts = () => {
         `http://localhost:8080/api/product/delete/${id}`
       );
       if (response.status >= 200) {
-        alert("product delete successfully");
+        toast.success(response?.data?.message);
         getProducts();
       }
     } catch (error) {

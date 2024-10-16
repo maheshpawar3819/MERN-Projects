@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import { IoMdArrowRoundBack } from "react-icons/io";
+import { toast } from "react-toastify";
 
 const AddProduct = () => {
   const [product, setProduct] = useState({
@@ -38,11 +39,17 @@ const AddProduct = () => {
       );
 
       if (response.status >= 200) {
-        alert("product create successfully");
+        toast.success(response?.data?.message);
         navigate("/product");
       }
     } catch (error) {
-      console.log(error);
+      if (
+        error.response &&
+        error.response.data &&
+        error.response.data.message
+      ) {
+        toast.error(error.response.data.message);
+      }
     }
   };
   return (

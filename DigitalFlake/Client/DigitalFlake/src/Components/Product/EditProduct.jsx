@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { IoMdArrowRoundBack } from "react-icons/io";
+import { toast } from "react-toastify";
 
 const EditProduct = () => {
   const [update, setUpdate] = useState({
@@ -34,7 +35,7 @@ const EditProduct = () => {
         categoryId: data?.categoryId,
       });
       if (response.status >= 200) {
-        console.log(response);
+        toast.success(response?.data?.message);
       }
     } catch (error) {
       console.log(error);
