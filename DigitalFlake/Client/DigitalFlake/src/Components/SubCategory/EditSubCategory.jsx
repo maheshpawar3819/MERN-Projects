@@ -7,6 +7,7 @@ import {
   useSearchParams,
 } from "react-router-dom";
 import { IoMdArrowRoundBack } from "react-icons/io";
+import { toast } from "react-toastify";
 
 const EditSubCategory = () => {
   const [data, setData] = useState({
@@ -32,7 +33,7 @@ const EditSubCategory = () => {
         categoryId: data.categoryId,
       });
       if (response.status >= 200) {
-        console.log(response);
+        toast.success(response?.data?.message);
       }
     } catch (error) {
       console.log(error);

@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { IoMdArrowRoundBack } from "react-icons/io";
+import { toast } from "react-toastify";
 
 const AddSubCategory = () => {
   const [subCategory, setSubCategory] = useState({
@@ -33,11 +34,17 @@ const AddSubCategory = () => {
 
       console.log(response);
       if (response.status >= 200) {
-        alert("successfully create subcategory");
+        toast.success(response?.data?.message);
         navigate("/subcategory");
       }
     } catch (error) {
-      console.log(error);
+      if (
+        error.response &&
+        error.response.data &&
+        error.response.data.message
+      ) {
+        toast.error(error.response.data.message);
+      }
     }
   };
 

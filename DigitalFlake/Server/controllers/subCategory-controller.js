@@ -24,7 +24,7 @@ const createSubCategory = async (req, res, next) => {
   const { name, imageUrl, status, categoryId } = req.body;
   try {
     if (!name || !imageUrl || !status || !categoryId) {
-      return res.status(401).json({ message: "plese fill all fields" });
+      return res.status(401).json({ message: "Plese fill all fields" });
     }
 
     const create = await prisma.subcategory.create({
