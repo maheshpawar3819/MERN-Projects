@@ -16,7 +16,7 @@ const registerUser = async (req, res, next) => {
     });
 
     if (isExist) {
-      return res.status(400).json({ message: "email is already exist" });
+      return res.status(400).json({ message: "Email is already exist" });
     }
 
     //hash the password before store in the database
@@ -46,7 +46,7 @@ const registerUser = async (req, res, next) => {
     //sending response
     res
       .status(200)
-      .json({ user: createUser, token, message: "user created successfully" });
+      .json({ user: createUser, token, message: "User created successfully" });
   } catch (error) {
     next();
   }
@@ -66,7 +66,7 @@ const loginUser = async (req, res, next) => {
     if (!isExist) {
       return res
         .status(401)
-        .json({ message: "email is not exist plese enter the correct email" });
+        .json({ message: "Email is not exist plese enter the correct email" });
     }
 
     //compare password

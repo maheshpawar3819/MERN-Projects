@@ -2,6 +2,7 @@ import axios from "axios";
 import React from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Register = () => {
   const [user, setUser] = useState({
@@ -37,10 +38,16 @@ const Register = () => {
       console.log(response);
       if (response.status >= 200) {
         navigate("/");
-        alert("Register successfully");
+        toast.success(response?.data?.message);
       }
     } catch (error) {
-      console.log(error);
+      if (
+        error.response &&
+        error.response.data &&
+        error.response.data.message
+      ) {
+        toast.error(error.response.data.message);
+      }
     }
   };
 
@@ -102,7 +109,7 @@ const Register = () => {
             </Link>
           </p>
           <button className="w-full bg-[#662671] text-white p-2 rounded-md shadow-lg hover:bg-[#7e308c] transition-colors">
-            Log In
+            Register
           </button>
         </form>
       </div>
