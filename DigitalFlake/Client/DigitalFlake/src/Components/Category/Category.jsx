@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import useGetCategory from "../Hooks/Category/useGetCategory";
 
 const Category = () => {
@@ -12,7 +11,6 @@ const Category = () => {
   const getdata = useSelector((store) => {
     return store?.category?.category;
   });
-
 
   // to count total categories
   const count = getdata.length;
