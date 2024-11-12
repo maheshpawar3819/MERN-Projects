@@ -13,7 +13,8 @@ const Category = () => {
     return store?.category?.category;
   });
 
-  //to count total categories
+
+  // to count total categories
   const count = getdata.length;
 
   return (
