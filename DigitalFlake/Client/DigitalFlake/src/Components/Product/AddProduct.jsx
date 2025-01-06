@@ -3,8 +3,21 @@ import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { toast } from "react-toastify";
+import useGetCategory from "../Hooks/Category/useGetCategory";
+import useSubCategories from "../Hooks/Subcategory/useSubCategories";
+import { useSelector } from "react-redux";
 
 const AddProduct = () => {
+  //api call for sub category and category
+  useGetCategory();
+  useSubCategories();
+
+  //get Categories and SubCategories from Redux Stroe
+  const Category = useSelector((store) => store?.category?.category);
+  const SubCategory = useSelector((store) => store?.category?.subCategory);
+  console.log(Category);
+  console.log(SubCategory);
+
   const [product, setProduct] = useState({
     name: "",
     imageUrl: "",
@@ -105,33 +118,55 @@ const AddProduct = () => {
             className="w-full px-4 mt-3 mb-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:border-blue-500 transition duration-300 ease-in-out"
           />
           <label
-            htmlFor="subcategoryId"
-            className="text-xl font-semibold text-gray-700 mb-2"
-          >
-            SubCategoryId
-          </label>
-          <input
-            type="text"
-            name="subcategoryId"
-            placeholder="Enter Subcategory ID (e.g., 1, 2, 3)"
-            value={product.subcategoryId}
-            onChange={handleChange}
-            className="w-full px-4 mt-3 mb-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:border-blue-500 transition duration-300 ease-in-out"
-          />
-          <label
             htmlFor="categoryId"
             className="text-xl font-semibold text-gray-700 mb-2"
           >
-            CategoryId
+            Category
           </label>
-          <input
-            type="text"
+          <select
             name="categoryId"
-            placeholder="Enter Category ID (e.g., 1, 2, 3)"
             value={product.categoryId}
             onChange={handleChange}
             className="w-full px-4 mt-3 mb-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:border-blue-500 transition duration-300 ease-in-out"
-          />
+          >
+            <option value="" disabled className="text-gray-400">
+              Select a Category
+            </option>
+            {Category.map((category) => (
+              <option
+                key={category.id}
+                value={category.id}
+                className="text-gray-700 bg-white hover:bg-blue-100"
+              >
+                {category.name}
+              </option>
+            ))}
+          </select>
+          <label
+            htmlFor="subcategoryId"
+            className="text-xl font-semibold text-gray-700 mb-2"
+          >
+            SubCategory
+          </label>
+          <select
+            name="subcategoryId"
+            value={product.subcategoryId}
+            onChange={handleChange}
+            className="w-full px-4 mt-3 mb-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:border-blue-500 transition duration-300 ease-in-out"
+          >
+            <option value="" disabled className="text-gray-400">
+              Select a SubCategory
+            </option>
+            {SubCategory.map((subCategory) => (
+              <option
+                key={subCategory.id}
+                value={subCategory.id}
+                className="text-gray-700 bg-white hover:bg-blue-100"
+              >
+                {subCategory.name}
+              </option>
+            ))}
+          </select>
           <button className="bg-[#662671] hover:bg-[#823c8f] text-white  p-2 rounded-md">
             Add Product
           </button>

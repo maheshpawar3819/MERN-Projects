@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 const AddSubCategory = () => {
   useGetCategory();
   const Category = useSelector((store) => store?.category?.category);
-  console.log(Category);
+ 
   const [subCategory, setSubCategory] = useState({
     name: "",
     imageUrl: "",
@@ -109,7 +109,7 @@ const AddSubCategory = () => {
             htmlFor="categoryId"
             className="text-xl font-semibold text-gray-700 mb-2"
           >
-            CategoryId
+            Category
           </label>
           <select
             name="categoryId"
