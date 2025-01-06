@@ -93,7 +93,7 @@ const AddProduct = () => {
             htmlFor="imgage"
             className="text-xl font-semibold text-gray-700 mb-2"
           >
-            Peste imageUrl
+            ImageUrl
           </label>
           <input
             type="text"
@@ -109,14 +109,28 @@ const AddProduct = () => {
           >
             Status
           </label>
-          <input
-            type="text"
+          <select
             name="status"
-            placeholder="Enter status (e.g., Active, Inactive)"
             value={product.status}
             onChange={handleChange}
             className="w-full px-4 mt-3 mb-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:border-blue-500 transition duration-300 ease-in-out"
-          />
+          >
+            <option value="" disabled className="text-gray-400">
+              Select Status
+            </option>
+            <option
+              value="active"
+              className="text-gray-700 bg-white hover:bg-blue-100"
+            >
+              Active
+            </option>
+            <option
+              value="inactive"
+              className="text-gray-700 bg-white hover:bg-blue-100"
+            >
+              Inactive
+            </option>
+          </select>
           <label
             htmlFor="categoryId"
             className="text-xl font-semibold text-gray-700 mb-2"
