@@ -1,25 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import useGetProducts from "../Hooks/Product/useGetProducts";
 import { useSelector } from "react-redux";
-import { useState } from "react";
 
 const Product = () => {
-  const [searchTerm, setSearchTerm] = useState(""); // State to hold the search input
-  //custom hook contains combine logic of getting products and productsdelete
+  const [searchTerm, setSearchTerm] = useState(""); 
+  const [currentPage, setCurrentPage] = useState(1); 
+  const itemsPerPage = 5; 
+
+  // Custom hook contains logic for getting and deleting products
   const { deleteProduct } = useGetProducts();
-  //get products form redux storage
-  const getProducts = useSelector((store) => {
-    return store?.category?.product;
-  });
 
-  //to count of all products
-  const count = getProducts.length;
+  // Get products from Redux store
+  const getProducts = useSelector((store) => store?.category?.product || []);
 
-  //function to filter subCategories
-  const filteredData = getProducts.filter((products) =>
-    products.name.toLowerCase().includes(searchTerm.toLowerCase())
+  // Filter products based on search term
+  const filteredData = getProducts.filter((product) =>
+    product.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  // Pagination logic
+  const totalItems = filteredData.length; 
+  const totalPages = Math.ceil(totalItems / itemsPerPage); 
+  const startIndex = (currentPage - 1) * itemsPerPage; 
+  const paginatedData = filteredData.slice(startIndex, startIndex + itemsPerPage); 
+
+  // Handle page navigation
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
 
   return (
     <div className="ml-72 mt-20 p-4">
@@ -28,12 +37,13 @@ const Product = () => {
           <Link to={"/product/add"}>Add New</Link>
         </button>
         <p className="text-3xl font-bold font-mono">
-          Product <span className="text-purple-900">{count}</span>
+          Product <span className="text-purple-900">{totalItems}</span>
         </p>
         <input
           type="text"
-          placeholder="Search category..."
+          placeholder="Search product..."
           className="p-2 border rounded-md w-1/3"
+          value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </div>
@@ -55,8 +65,8 @@ const Product = () => {
           </tr>
         </thead>
         <tbody>
-          {filteredData.length > 0 ? (
-            filteredData.map((ele) => {
+          {paginatedData.length > 0 ? (
+            paginatedData.map((ele) => {
               const { id, imageUrl, name, status } = ele;
               return (
                 <tr key={id} className="border-b hover:bg-gray-100">
@@ -96,13 +106,34 @@ const Product = () => {
             })
           ) : (
             <tr>
-              <td colSpan="5" className="p-3 text-center">
+              <td colSpan="7" className="p-3 text-center">
                 No Products found.
               </td>
             </tr>
           )}
         </tbody>
       </table>
+
+      {/* Pagination Controls */}
+      {totalPages > 1 && (
+        <div className="flex justify-center mt-4">
+          {Array.from({ length: totalPages }, (_, index) => index + 1).map(
+            (page) => (
+              <button
+                key={page}
+                onClick={() => handlePageChange(page)}
+                className={`mx-1 px-4 py-2 rounded-md ${
+                  currentPage === page
+                    ? "bg-purple-600 text-white"
+                    : "bg-gray-200 text-black"
+                }`}
+              >
+                {page}
+              </button>
+            )
+          )}
+        </div>
+      )}
     </div>
   );
 };

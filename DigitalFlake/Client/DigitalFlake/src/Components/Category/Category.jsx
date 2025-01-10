@@ -4,19 +4,33 @@ import { useSelector } from "react-redux";
 import useGetCategory from "../Hooks/Category/useGetCategory";
 
 const Category = () => {
-  const [searchTerm, setSearchTerm] = useState(""); // State to hold the search input
+  const [searchTerm, setSearchTerm] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 6;
+
   const { deleteCategory } = useGetCategory();
 
   // Get data from Redux store
   const getdata = useSelector((store) => store?.category?.category || []);
 
-  // Filter categories based on the search term
+  // Filter categories based on search term
   const filteredData = getdata.filter((category) =>
     category.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  // Total count of categories
-  const count = getdata.length;
+  // Pagination logic
+  const totalItems = filteredData.length;
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const paginatedData = filteredData.slice(
+    startIndex,
+    startIndex + itemsPerPage
+  );
+
+  // Handle page navigation
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
 
   return (
     <div className="ml-72 mt-20 p-4">
@@ -25,7 +39,7 @@ const Category = () => {
           <Link to={"/category/add"}>Add New</Link>
         </button>
         <p className="text-3xl font-bold font-mono">
-          Category <span className="text-purple-900">{count}</span>
+          Category <span className="text-purple-900">{totalItems}</span>
         </p>
         <input
           type="text"
@@ -47,8 +61,8 @@ const Category = () => {
           </tr>
         </thead>
         <tbody>
-          {filteredData.length > 0 ? (
-            filteredData.map((ele) => {
+          {paginatedData.length > 0 ? (
+            paginatedData.map((ele) => {
               const { id, imageUrl, name, status } = ele;
               return (
                 <tr key={id} className="border-b hover:bg-gray-100">
@@ -95,6 +109,26 @@ const Category = () => {
           )}
         </tbody>
       </table>
+      {/* Pagination Controls */}
+      {totalPages > 1 && (
+        <div className="flex justify-center mt-4">
+          {Array.from({ length: totalPages }, (_, index) => index + 1).map(
+            (page) => (
+              <button
+                key={page}
+                onClick={() => handlePageChange(page)}
+                className={`mx-1 px-4 py-2 rounded-md ${
+                  currentPage === page
+                    ? "bg-purple-600 text-white"
+                    : "bg-gray-200 text-black"
+                }`}
+              >
+                {page}
+              </button>
+            )
+          )}
+        </div>
+      )}
     </div>
   );
 };

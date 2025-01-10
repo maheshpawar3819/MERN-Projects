@@ -4,22 +4,36 @@ import useSubCategories from "../Hooks/Subcategory/useSubCategories";
 import { useSelector } from "react-redux";
 
 const SubCategory = () => {
-  const [searchTerm, setSearchTerm] = useState(""); // State to hold the search input
+  const [searchTerm, setSearchTerm] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 5;
 
-  //custom hook contains combine logic of getting subCategories and deleteSubCategories
+  // Custom hook contains combine logic of getting and deleting subCategories
   const { deleteSubcategory } = useSubCategories();
 
-  const getSubCategories = useSelector((store) => {
-    return store?.category?.subCategory;
-  });
+  // Get subCategories from Redux store
+  const getSubCategories = useSelector(
+    (store) => store?.category?.subCategory || []
+  );
 
-  //to count all subcategories
-  const count = getSubCategories.length;
-
-  //function to filter subCategories
+  // Filter subCategories based on search term
   const filteredData = getSubCategories.filter((subCategory) =>
     subCategory.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  // Pagination logic
+  const totalItems = filteredData.length;
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const paginatedData = filteredData.slice(
+    startIndex,
+    startIndex + itemsPerPage
+  );
+
+  // Handle page navigation
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
 
   return (
     <>
@@ -29,15 +43,14 @@ const SubCategory = () => {
             <Link to={"/subcategory/add"}>Add New</Link>
           </button>
           <p className="text-3xl font-bold font-mono">
-            SubCategory <span className="text-purple-900">{count}</span>
+            SubCategory <span className="text-purple-900">{totalItems}</span>
           </p>
           <input
             type="text"
-            placeholder="Search category..."
+            placeholder="Search subCategory..."
             className="p-2 border rounded-md w-1/3"
-            onChange={(e) => {
-              setSearchTerm(e.target.value);
-            }}
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
         <table
@@ -57,8 +70,8 @@ const SubCategory = () => {
             </tr>
           </thead>
           <tbody>
-            {filteredData.length > 0 ? (
-              filteredData.map((ele) => {
+            {paginatedData.length > 0 ? (
+              paginatedData.map((ele) => {
                 const { id, imageUrl, name, status } = ele;
                 return (
                   <tr key={id} className="border-b hover:bg-gray-100">
@@ -73,9 +86,6 @@ const SubCategory = () => {
                         className="rounded-lg"
                       />
                     </td>
-                    {/* {
-                      console.log(ele?.products.length > 0)
-                    } */}
                     <td
                       className={`p-3 ${
                         status === "active"
@@ -104,13 +114,33 @@ const SubCategory = () => {
               })
             ) : (
               <tr>
-                <td colSpan="5" className="p-3 text-center">
+                <td colSpan="6" className="p-3 text-center">
                   No subCategories found.
                 </td>
               </tr>
             )}
           </tbody>
         </table>
+        {/* Pagination Controls */}
+        {totalPages > 1 && (
+          <div className="flex justify-center mt-4">
+            {Array.from({ length: totalPages }, (_, index) => index + 1).map(
+              (page) => (
+                <button
+                  key={page}
+                  onClick={() => handlePageChange(page)}
+                  className={`mx-1 px-4 py-2 rounded-md ${
+                    currentPage === page
+                      ? "bg-purple-600 text-white"
+                      : "bg-gray-200 text-black"
+                  }`}
+                >
+                  {page}
+                </button>
+              )
+            )}
+          </div>
+        )}
       </div>
     </>
   );
