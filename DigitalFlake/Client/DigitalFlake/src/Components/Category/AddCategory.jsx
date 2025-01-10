@@ -77,7 +77,7 @@ const AddCategory = () => {
             htmlFor="imgage"
             className="text-xl font-semibold text-gray-700 mb-2"
           >
-            Peste imageUrl
+            ImageUrl
           </label>
           <input
             type="text"
@@ -93,14 +93,28 @@ const AddCategory = () => {
           >
             Status
           </label>
-          <input
-            type="text"
+          <select
             name="status"
-            placeholder="Enter status (e.g., Active, Inactive)"
             value={category.status}
             onChange={handleChange}
-            className="w-full px-4 py-2 mt-3 mb-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:border-blue-500 transition duration-300 ease-in-out"
-          />
+            className="w-full px-4 mt-3 mb-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:border-blue-500 transition duration-300 ease-in-out"
+          >
+            <option value="" disabled className="text-gray-400">
+              Select Status
+            </option>
+            <option
+              value="active"
+              className="text-gray-700 bg-white hover:bg-blue-100"
+            >
+              Active
+            </option>
+            <option
+              value="inactive"
+              className="text-gray-700 bg-white hover:bg-blue-100"
+            >
+              Inactive
+            </option>
+          </select>
           <button className="bg-[#662671] hover:bg-[#823c8f] text-white  p-2 rounded-md">
             Add Category
           </button>

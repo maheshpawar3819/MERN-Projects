@@ -81,7 +81,7 @@ const AddSubCategory = () => {
             htmlFor="imgage"
             className="text-xl font-semibold text-gray-700 mb-2"
           >
-            Peste imageUrl
+          ImageUrl
           </label>
           <input
             type="text"
