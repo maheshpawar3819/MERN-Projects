@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { getProduct ,removeProduct} from "../../../store/categorySlice";
+import { getProduct, removeProduct } from "../../../store/categorySlice";
 import { toast } from "react-toastify";
 
 const useGetProducts = () => {
@@ -31,7 +31,6 @@ const useGetProducts = () => {
       }
     } catch (error) {
       console.log(error);
-
     }
   };
 
