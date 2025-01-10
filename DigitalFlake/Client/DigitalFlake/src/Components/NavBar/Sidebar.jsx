@@ -1,5 +1,5 @@
 import React from "react";
-import { BiCategoryAlt } from "react-icons/bi";
+import { BiCategoryAlt, BiHomeAlt } from "react-icons/bi";
 import { AiOutlineProduct } from "react-icons/ai";
 import { TbCategoryMinus } from "react-icons/tb";
 import { FaPlay } from "react-icons/fa";
@@ -17,7 +17,7 @@ const Sidebar = () => {
         >
           <li className="flex items-center justify-between p-2 hover:bg-gray-200 rounded-lg cursor-pointer">
             <div className="flex items-center space-x-2">
-              <BiCategoryAlt className="text-xl" />
+              <BiHomeAlt className="text-xl" />
               <span className="text-xl">Home</span>
             </div>
             <FaPlay className="text-sm" />

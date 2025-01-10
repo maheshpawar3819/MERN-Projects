@@ -2,13 +2,18 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import useGetCategory from "../Hooks/Category/useGetCategory";
+import useSubCategories from "../Hooks/Subcategory/useSubCategories";
+import useGetProducts from "../Hooks/Product/useGetProducts";
 
 const Category = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
 
+  //api call for get all
   const { deleteCategory } = useGetCategory();
+  useSubCategories();
+  useGetProducts();
 
   // Get data from Redux store
   const getdata = useSelector((store) => store?.category?.category || []);
