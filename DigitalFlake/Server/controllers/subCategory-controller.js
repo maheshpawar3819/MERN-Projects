@@ -22,6 +22,7 @@ const getSubcategories = async (req, res, next) => {
 //to create sub-subcategorey
 const createSubCategory = async (req, res, next) => {
   const { name, imageUrl, status, categoryId } = req.body;
+
   try {
     if (!name || !imageUrl || !status || !categoryId) {
       return res.status(401).json({ message: "Plese fill all fields" });

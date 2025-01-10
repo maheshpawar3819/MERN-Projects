@@ -14,7 +14,6 @@ const getProducts = async (req, res, next) => {
     if (getP.length === 0) {
       return res.status(401).json({ message: "no product found" });
     }
-
     res.status(200).json(getP);
   } catch (error) {
     next();

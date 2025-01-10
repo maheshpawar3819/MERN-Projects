@@ -39,7 +39,6 @@ const registerUser = async (req, res, next) => {
       },
       process.env.JWT_SECRET_KEY,
       {
-        expiresIn: "1h",
       }
     );
 
