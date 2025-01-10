@@ -1,13 +1,13 @@
 import axios from "axios";
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { getSubCateogries ,removeSubCategories} from "../../../store/categorySlice";
+import {
+  getSubCateogries,
+  removeSubCategories,
+} from "../../../store/categorySlice";
 import { toast } from "react-toastify";
 
 const useSubCategories = () => {
-  useEffect(() => {
-    getSubCategory();
-  }, []);
   const dispatch = useDispatch();
 
   const getSubCategory = async () => {
@@ -34,6 +34,10 @@ const useSubCategories = () => {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    getSubCategory();
+  }, [dispatch]);
 
   return { getSubCategory, deleteSubcategory };
 };

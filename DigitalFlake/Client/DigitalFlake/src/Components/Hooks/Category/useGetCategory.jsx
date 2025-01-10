@@ -5,9 +5,6 @@ import { getCategories, removeCategories } from "../../../store/categorySlice";
 import { toast } from "react-toastify";
 
 const useGetCategory = () => {
-  useEffect(() => {
-    getCategory();
-  }, []);
   const dispatch = useDispatch();
   const getCategory = async () => {
     try {
@@ -35,6 +32,10 @@ const useGetCategory = () => {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    getCategory();
+  }, [dispatch]);
 
   return { getCategory, deleteCategory };
 };

@@ -5,9 +5,6 @@ import { getProduct, removeProduct } from "../../../store/categorySlice";
 import { toast } from "react-toastify";
 
 const useGetProducts = () => {
-  useEffect(() => {
-    getProducts();
-  }, []);
   const dispatch = useDispatch();
   const getProducts = async () => {
     try {
@@ -33,6 +30,10 @@ const useGetProducts = () => {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    getProducts();
+  }, [dispatch]);
 
   return { getProducts, deleteProduct };
 };
