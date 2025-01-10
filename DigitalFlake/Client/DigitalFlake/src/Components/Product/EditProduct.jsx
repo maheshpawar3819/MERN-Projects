@@ -108,7 +108,7 @@ const EditProduct = () => {
           htmlFor="imgage"
           className="text-xl font-semibold text-gray-700 mb-2"
         >
-          Peste imageUrl
+          imageUrl
         </label>
         <input
           type="text"
@@ -118,17 +118,32 @@ const EditProduct = () => {
           onChange={handleChange}
           className="w-full px-4 mt-3 mb-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:border-blue-500 transition duration-300 ease-in-out"
         />
+        <label className="text-xl font-semibold text-gray-700 mb-2">
+          Status
+        </label>
+        <select
+          name="status"
+          value={update.status}
+          onChange={handleChange}
+          className="w-full px-4 mt-3 mb-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none transition duration-300 ease-in-out"
+        >
+          <option value="" disabled>
+            Select Status
+          </option>
+          <option value="active">Active</option>
+          <option value="inactive">Inactive</option>
+        </select>
         <label
-          htmlFor="status"
+          htmlFor="categoryId"
           className="text-xl font-semibold text-gray-700 mb-2"
         >
-          Status
+          CategoryId
         </label>
         <input
           type="text"
-          name="status"
-          placeholder="Enter status (e.g., Active, Inactive)"
-          value={update.status}
+          name="categoryId"
+          placeholder="Enter Category ID (e.g., 1, 2, 3)"
+          value={update.categoryId}
           onChange={handleChange}
           className="w-full px-4 mt-3 mb-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:border-blue-500 transition duration-300 ease-in-out"
         />
@@ -146,20 +161,7 @@ const EditProduct = () => {
           onChange={handleChange}
           className="w-full px-4 mt-3 mb-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:border-blue-500 transition duration-300 ease-in-out"
         />
-        <label
-          htmlFor="categoryId"
-          className="text-xl font-semibold text-gray-700 mb-2"
-        >
-          CategoryId
-        </label>
-        <input
-          type="text"
-          name="categoryId"
-          placeholder="Enter Category ID (e.g., 1, 2, 3)"
-          value={update.categoryId}
-          onChange={handleChange}
-          className="w-full px-4 mt-3 mb-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:border-blue-500 transition duration-300 ease-in-out"
-        />
+
         <button className="bg-[#662671] hover:bg-[#823c8f] text-white px-3 tracking-wider p-2 rounded-md">
           Update
         </button>
