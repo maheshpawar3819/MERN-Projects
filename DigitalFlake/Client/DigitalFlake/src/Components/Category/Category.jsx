@@ -1,18 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import useGetCategory from "../Hooks/Category/useGetCategory";
 
 const Category = () => {
-  //custom hook contains combine logic of getting categories and deleteCategories
+  const [searchTerm, setSearchTerm] = useState(""); // State to hold the search input
   const { deleteCategory } = useGetCategory();
 
-  //get data from redux store
-  const getdata = useSelector((store) => {
-    return store?.category?.category;
-  });
+  // Get data from Redux store
+  const getdata = useSelector((store) => store?.category?.category || []);
 
-  // to count total categories
+  // Filter categories based on the search term
+  const filteredData = getdata.filter((category) =>
+    category.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  // Total count of categories
   const count = getdata.length;
 
   return (
@@ -28,6 +31,8 @@ const Category = () => {
           type="text"
           placeholder="Search category..."
           className="p-2 border rounded-md w-1/3"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
         />
       </div>
 
@@ -42,8 +47,8 @@ const Category = () => {
           </tr>
         </thead>
         <tbody>
-          {getdata.length > 0 ? (
-            getdata.map((ele) => {
+          {filteredData.length > 0 ? (
+            filteredData.map((ele) => {
               const { id, imageUrl, name, status } = ele;
               return (
                 <tr key={id} className="border-b hover:bg-gray-100">
@@ -65,7 +70,7 @@ const Category = () => {
                   >
                     {status}
                   </td>
-                  <td className="p-3 flex space-x-2 mt-2">
+                  <td className="p-3 flex space-x-2">
                     <Link to={`/category/${id}`}>
                       <button className="p-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
                         Edit
@@ -84,7 +89,7 @@ const Category = () => {
           ) : (
             <tr>
               <td colSpan="5" className="p-3 text-center">
-                <h1>Loading...</h1>
+                No categories found.
               </td>
             </tr>
           )}

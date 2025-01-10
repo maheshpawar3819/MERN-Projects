@@ -2,8 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import useGetProducts from "../Hooks/Product/useGetProducts";
 import { useSelector } from "react-redux";
+import { useState } from "react";
 
 const Product = () => {
+  const [searchTerm, setSearchTerm] = useState(""); // State to hold the search input
   //custom hook contains combine logic of getting products and productsdelete
   const { deleteProduct } = useGetProducts();
   //get products form redux storage
@@ -13,6 +15,11 @@ const Product = () => {
 
   //to count of all products
   const count = getProducts.length;
+
+  //function to filter subCategories
+  const filteredData = getProducts.filter((products) =>
+    products.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <div className="ml-72 mt-20 p-4">
@@ -27,6 +34,7 @@ const Product = () => {
           type="text"
           placeholder="Search category..."
           className="p-2 border rounded-md w-1/3"
+          onChange={(e) => setSearchTerm(e.target.value)}
         />
       </div>
       <table
@@ -47,8 +55,8 @@ const Product = () => {
           </tr>
         </thead>
         <tbody>
-          {getProducts.length > 0 ? (
-            getProducts.map((ele) => {
+          {filteredData.length > 0 ? (
+            filteredData.map((ele) => {
               const { id, imageUrl, name, status } = ele;
               return (
                 <tr key={id} className="border-b hover:bg-gray-100">
@@ -88,8 +96,8 @@ const Product = () => {
             })
           ) : (
             <tr>
-              <td colSpan="5">
-                <h1>Loading...</h1>
+              <td colSpan="5" className="p-3 text-center">
+                No Products found.
               </td>
             </tr>
           )}

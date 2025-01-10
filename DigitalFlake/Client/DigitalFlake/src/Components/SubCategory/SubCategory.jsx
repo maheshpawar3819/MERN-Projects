@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import useSubCategories from "../Hooks/Subcategory/useSubCategories";
 import { useSelector } from "react-redux";
 
 const SubCategory = () => {
+  const [searchTerm, setSearchTerm] = useState(""); // State to hold the search input
+
   //custom hook contains combine logic of getting subCategories and deleteSubCategories
   const { deleteSubcategory } = useSubCategories();
 
@@ -13,6 +15,11 @@ const SubCategory = () => {
 
   //to count all subcategories
   const count = getSubCategories.length;
+
+  //function to filter subCategories
+  const filteredData = getSubCategories.filter((subCategory) =>
+    subCategory.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <>
@@ -28,6 +35,9 @@ const SubCategory = () => {
             type="text"
             placeholder="Search category..."
             className="p-2 border rounded-md w-1/3"
+            onChange={(e) => {
+              setSearchTerm(e.target.value);
+            }}
           />
         </div>
         <table
@@ -47,8 +57,8 @@ const SubCategory = () => {
             </tr>
           </thead>
           <tbody>
-            {getSubCategories.length > 0 ? (
-              getSubCategories.map((ele) => {
+            {filteredData.length > 0 ? (
+              filteredData.map((ele) => {
                 const { id, imageUrl, name, status } = ele;
                 return (
                   <tr key={id} className="border-b hover:bg-gray-100">
@@ -95,7 +105,7 @@ const SubCategory = () => {
             ) : (
               <tr>
                 <td colSpan="5" className="p-3 text-center">
-                  <h1>Loading...</h1>
+                  No subCategories found.
                 </td>
               </tr>
             )}
