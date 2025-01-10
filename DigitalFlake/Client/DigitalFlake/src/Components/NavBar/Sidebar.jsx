@@ -10,12 +10,27 @@ const Sidebar = () => {
     <div className="h-screen bg-gray-100 w-72 fixed top-0 left-0 p-4 ">
       <ul className="space-y-4 mt-20">
         <NavLink
-          to="/category"
+          to="/home"
           className={({ isActive }) =>
             isActive ? "text-[#662671] bg-red-500" : ""
           }
         >
           <li className="flex items-center justify-between p-2 hover:bg-gray-200 rounded-lg cursor-pointer">
+            <div className="flex items-center space-x-2">
+              <BiCategoryAlt className="text-xl" />
+              <span className="text-xl">Home</span>
+            </div>
+            <FaPlay className="text-sm" />
+          </li>
+        </NavLink>
+        <hr />
+        <NavLink
+          to="/category"
+          className={({ isActive }) =>
+            isActive ? "text-[#662671] bg-red-500" : ""
+          }
+        >
+          <li className="flex items-center justify-between p-2 hover:bg-gray-200 rounded-lg cursor-pointer mt-3">
             <div className="flex items-center space-x-2">
               <BiCategoryAlt className="text-xl" />
               <span className="text-xl">Category</span>

@@ -25,7 +25,7 @@ const EditProduct = () => {
       const response = await axios.get(
         `http://localhost:8080/api/product/product/${params.id}`
       );
-      console.log(response?.data?.getP);
+
       const data = response?.data?.getP;
       setUpdate({
         name: data?.name,

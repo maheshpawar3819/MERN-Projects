@@ -14,11 +14,12 @@ import Register from "./Components/login/Register";
 import Layout from "./Components/NavBar/Layout";
 import Sidebar from "./Components/NavBar/Sidebar";
 import PrivateRoute from "./PrivateRoute";
+import Home from "./Components/Home/Home";
 
 function App() {
   const approuter = createBrowserRouter([
     {
-      path: "/",
+      path: "/login",
       element: <Loginform />,
     },
     {
@@ -27,85 +28,61 @@ function App() {
     },
     {
       path: "/",
-      element: <Layout />, // Layout with Navbar
+      element: (
+        <PrivateRoute>
+          <Layout /> // Layout with Navbar
+        </PrivateRoute>
+      ),
       children: [
         {
           path: "category",
-          element: (
-            <PrivateRoute>
-              <Category />
-            </PrivateRoute>
-          ),
+          element: <Category />,
+        },
+        {
+          path: "home",
+          element: <Home />,
         },
         {
           path: "category/add",
-          element: (
-            <PrivateRoute>
-              <AddCategory />
-            </PrivateRoute>
-          ),
+          element: <AddCategory />,
         },
         {
           path: "category/:id",
-          element: (
-            <PrivateRoute>
-              <EditCategory />
-            </PrivateRoute>
-          ),
+          element: <EditCategory />,
         },
         {
           path: "subcategory",
-          element: (
-            <PrivateRoute>
-              <SubCategory />
-            </PrivateRoute>
-          ),
+          element: <SubCategory />,
         },
         {
           path: "subcategory/add",
-          element: (
-            <PrivateRoute>
-              <AddSubCategory />
-            </PrivateRoute>
-          ),
+          element: <AddSubCategory />,
         },
         {
           path: "subcategory/:id",
-          element: (
-            <PrivateRoute>
-              <EditSubCategory />
-            </PrivateRoute>
-          ),
+          element: <EditSubCategory />,
         },
         {
           path: "product",
-          element: (
-            <PrivateRoute>
-              <Product />
-            </PrivateRoute>
-          ),
+          element: <Product />,
         },
         {
           path: "product/add",
-          element: (
-            <PrivateRoute>
-              <AddProduct />
-            </PrivateRoute>
-          ),
+          element: <AddProduct />,
         },
         {
           path: "product/:id",
-          element: (
-            <PrivateRoute>
-              <EditProduct />``
-            </PrivateRoute>
-          ),
+          element: <EditProduct />,
         },
       ],
     },
     {
       path: "/sidebar",
-      element: <Sidebar />,
+      element: (
+        <PrivateRoute>
+          <Sidebar />
+        </PrivateRoute>
+      ),
     },
   ]);
 
